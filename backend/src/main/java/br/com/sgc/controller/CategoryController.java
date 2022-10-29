@@ -27,10 +27,10 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idCategory}")
     @ApiOperation(MessageUtil.OPERATION_CATEGORY_FIND_BY_ID)
-    public ResponseEntity<CategoryDto> findById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(categoryService.findById(id));
+    public ResponseEntity<CategoryDto> findById(@PathVariable Long idCategory) {
+        return ResponseEntity.status(HttpStatus.OK).body(categoryService.findById(idCategory));
     }
 
 }

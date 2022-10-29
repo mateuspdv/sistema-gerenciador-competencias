@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
+
+        <changeSet id="20221029140825-1" author="Mateus Padovan Pereira">
+            <createTable tableName="competency">
+                <column name="id" type="bigint">
+                    <constraints primaryKey="true"></constraints>
+                </column>
+                <column name="name" type="varchar(50)">
+                    <constraints nullable="false"></constraints>
+                </column>
+                <column name="description" type="varchar(100)">
+                    <constraints nullable="false"></constraints>
+                </column>
+                <column name="id_category" type="bigint">
+                    <constraints nullable="false"
+                                 foreignKeyName="fk_competency_id_category"
+                                 references="category(id)"></constraints>
+                </column>
+            </createTable>
+        </changeSet>
+
+        <changeSet id="20221029141515-2" author="Mateus Padovan Pereira">
+            <createSequence sequenceName="sequence_competency"
+                            dataType="bigint"
+                            startValue="1"
+                            incrementBy="1"></createSequence>
+        </changeSet>
+
+</databaseChangeLog>

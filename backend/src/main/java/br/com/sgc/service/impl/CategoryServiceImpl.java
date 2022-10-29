@@ -31,4 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new EntityNotFoundException(MessageUtil.CATEGORY_NOT_FOUND)));
     }
 
+    @Transactional(readOnly = true)
+    public void existsById(Long idCategory) {
+        if (!categoryRepository.existsById(idCategory)) {
+            throw new EntityNotFoundException(MessageUtil.CATEGORY_NOT_FOUND);
+        }
+    }
+
 }

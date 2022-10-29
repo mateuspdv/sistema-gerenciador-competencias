@@ -10,4 +10,6 @@ public interface CategoryService {
 
     CategoryDto findById(Long idCategory);
 
+    void existsById(Long idCategory);
+
 }
