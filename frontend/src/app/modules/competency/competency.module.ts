@@ -7,6 +7,7 @@ import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {TooltipModule} from 'primeng/tooltip';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {TooltipModule} from 'primeng/tooltip';
     ToastModule,
     TableModule,
     ButtonModule,
-    TooltipModule
+    TooltipModule,
+    ConfirmDialogModule
   ]
 })
 export class CompetencyModule { }

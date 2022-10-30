@@ -3,13 +3,13 @@ import { CategoryService } from './../../services/category.service';
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-competency-list',
   templateUrl: './competency-list.component.html',
   styleUrls: ['./competency-list.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class CompetencyListComponent implements OnInit {
 
@@ -21,7 +21,8 @@ export class CompetencyListComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.setColumns();
@@ -69,13 +70,34 @@ export class CompetencyListComponent implements OnInit {
     });
   }
 
+  deleteCompetency(idCompetency: number): void {
+    this.competencyService.deleteById(idCompetency).subscribe({
+        next: () => {
+            this.addToast('success', '', 'Exclusão realizada com sucesso!');
+            this.findCompetencies();
+        },
+        error: (error) => {
+            this.addToast('error', 'Erro ao excluir competência', error.message);
+        }
+    })
+  }
+
   getCategoryName(idCategory: number): any {
     const category = this.categories.find(category => category.id == idCategory);
     return category?.name;
   }
 
-  isStringField(field: any): boolean {
+  isStringField(field: string): boolean {
     return field === 'name' || field === 'description';
+  }
+
+  confirmDeleteCompetency(competency: CompetencyModel) : void {
+    this.confirmationService.confirm({
+        message: 'Deseja realmente excluir a competência ' + competency.name + '?',
+        accept: () => {
+            this.deleteCompetency(competency.id);
+        }
+    });
   }
 
 }

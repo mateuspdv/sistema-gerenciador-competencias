@@ -1,9 +1,13 @@
-<button pButton
+<div class="top-layout">
+    <button pButton
         type="button"
-        class="p-button-raised p-button-rounded p-button-success register-button"
+        class="p-button-raised p-button-rounded p-button-success"
         icon="pi pi-fw pi-pencil"
         pTooltip="Cadastrar Competência"
         tooltipPosition="top"></button>
+
+    <h3 class="title">Competências</h3>
+</div>
 
 <p-table [columns]="cols" [value]="competencies">
     <ng-template pTemplate="header" let-columns>
@@ -31,7 +35,8 @@
                         <button pButton
                                 type="button"
                                 label="Excluir"
-                                class="p-button-raised p-button-rounded p-button-danger"></button>
+                                class="p-button-raised p-button-rounded p-button-danger"
+                                (click)="confirmDeleteCompetency(competency)"></button>
                     </div>
                 </div>
             </td>
@@ -40,3 +45,8 @@
 </p-table>
 
 <p-toast></p-toast>
+<p-confirmDialog header="Excluir competência"
+                 acceptLabel="Sim"
+                 rejectLabel="Não"
+                 acceptButtonStyleClass="p-button-secondary p-button-sm"
+                 rejectButtonStyleClass="p-button-secondary p-button-sm"></p-confirmDialog>
