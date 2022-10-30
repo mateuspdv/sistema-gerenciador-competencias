@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { CompetencyRoutingModule } from './competency-routing.module';
 import { CompetencyListComponent } from './components/competency-list/competency-list.component';
+import {ToastModule} from 'primeng/toast';
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -11,7 +15,11 @@ import { CompetencyListComponent } from './components/competency-list/competency
   ],
   imports: [
     CommonModule,
-    CompetencyRoutingModule
+    CompetencyRoutingModule,
+    ToastModule,
+    TableModule,
+    ButtonModule,
+    TooltipModule
   ]
 })
 export class CompetencyModule { }

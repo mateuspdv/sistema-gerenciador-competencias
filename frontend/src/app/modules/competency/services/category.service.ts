@@ -10,7 +10,7 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  url: string = 'localhost:8080/api/competencia';
+  url: string = 'http://localhost:8080/api/categoria';
 
   findAll(): Observable<CategoryModel[]> {
     return this.httpClient.get<CategoryModel[]>(this.url);

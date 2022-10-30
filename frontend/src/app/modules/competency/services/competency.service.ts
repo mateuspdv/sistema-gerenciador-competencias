@@ -10,7 +10,7 @@ export class CompetencyService {
 
   constructor(private httpClient: HttpClient) { }
 
-  url: string = 'localhost:8080/api/competencia';
+  url: string = 'http://localhost:8080/api/competencia';
 
   findAll(): Observable<CompetencyModel[]> {
     return this.httpClient.get<CompetencyModel[]>(this.url);

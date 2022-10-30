@@ -1,3 +1,42 @@
-<p>competency-list works!</p>
+<button pButton
+        type="button"
+        class="p-button-raised p-button-rounded p-button-success register-button"
+        icon="pi pi-fw pi-pencil"
+        pTooltip="Cadastrar Competência"
+        tooltipPosition="top"></button>
 
-<p>Agora Sim Funcionandooooo</p>
+<p-table [columns]="cols" [value]="competencies">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-competency let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <div *ngIf="isStringField(col.field)">
+                    {{ competency[col.field] }}
+                </div>
+                <div *ngIf="col.field === 'idCategory'">
+                    {{ getCategoryName(competency[col.field]) }}
+                </div>
+                <div *ngIf="col.field === 'actions'">
+                    <div class="action-buttons">
+                        <button pButton
+                                type="button"
+                                label="Editar"
+                                class="p-button-raised p-button-rounded p-button-secondary"></button>
+                        <button pButton
+                                type="button"
+                                label="Excluir"
+                                class="p-button-raised p-button-rounded p-button-danger"></button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-toast></p-toast>
