@@ -2,7 +2,7 @@ import { CategoryModel } from './../../models/category.model';
 import { CategoryService } from './../../services/category.service';
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -18,6 +18,8 @@ export class CompetencyListComponent implements OnInit {
   categories: CategoryModel[] = [];
 
   cols: any[] = [];
+
+  displayForm: boolean = false;
 
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
@@ -98,6 +100,14 @@ export class CompetencyListComponent implements OnInit {
             this.deleteCompetency(competency.id);
         }
     });
+  }
+
+  openForm(): void {
+    this.displayForm = true;
+  }
+
+  closeForm(): void {
+    this.displayForm = false;
   }
 
 }

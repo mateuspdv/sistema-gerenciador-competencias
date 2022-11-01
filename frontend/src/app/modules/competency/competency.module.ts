@@ -8,11 +8,14 @@ import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {TooltipModule} from 'primeng/tooltip';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { CompetencyFormComponent } from './components/competency-form/competency-form.component';
+import {DialogModule} from 'primeng/dialog';
 
 
 @NgModule({
   declarations: [
-    CompetencyListComponent
+    CompetencyListComponent,
+    CompetencyFormComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     TableModule,
     ButtonModule,
     TooltipModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule
   ]
 })
 export class CompetencyModule { }

@@ -4,7 +4,8 @@
         class="p-button-raised p-button-rounded p-button-success"
         icon="pi pi-fw pi-pencil"
         pTooltip="Cadastrar Competência"
-        tooltipPosition="top"></button>
+        tooltipPosition="top"
+        (click)="openForm()"></button>
 
     <h3 class="title">Competências</h3>
 </div>
@@ -44,7 +45,10 @@
     </ng-template>
 </p-table>
 
+<app-competency-form [showForm]="displayForm" (closeForm)="closeForm()"></app-competency-form>
+
 <p-toast></p-toast>
+
 <p-confirmDialog header="Excluir competência"
                  acceptLabel="Sim"
                  rejectLabel="Não"
