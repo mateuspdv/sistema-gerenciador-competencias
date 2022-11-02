@@ -22,8 +22,8 @@ public class MessageUtil {
     public static final String VALIDATION_COMPETENCY_NAME_SIZE_MAX = "O campo nome deve possuir no máximo 50 caracteres!";
     public static final String VALIDATION_COMPETENCY_DESCRIPTION_NOT_NULL = "O campo descrição não pode ser nulo!";
     public static final String VALIDATION_COMPETENCY_DESCRIPTION_NOT_EMPTY = "O compo descrição não pode ser vazio!";
-    public static final String VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MIN = "O campo descrição deve possuir no mínimo 10 caracteres!";
-    public static final String VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MAX = "O campo descrição deve possuir no máximo 100 caracteres!";
+    public static final String VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MIN = "O campo descrição deve possuir no mínimo 3 caracteres!";
+    public static final String VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MAX = "O campo descrição deve possuir no máximo 50 caracteres!";
     public static final String VALIDATION_COMPETENCY_ID_CATEGORY_NOT_NULL = "O campo categoria não pode ser nulo!";
 
 }

@@ -23,8 +23,8 @@ public class CompetencyDto implements Serializable {
 
     @NotNull(message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_NOT_NULL)
     @NotEmpty(message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_NOT_EMPTY)
-    @Size(min = 10, message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MIN)
-    @Size(max = 100, message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MAX)
+    @Size(min = 3, message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MIN)
+    @Size(max = 50, message = MessageUtil.VALIDATION_COMPETENCY_DESCRIPTION_SIZE_MAX)
     private String description;
 
     @NotNull(message = MessageUtil.VALIDATION_COMPETENCY_ID_CATEGORY_NOT_NULL)
