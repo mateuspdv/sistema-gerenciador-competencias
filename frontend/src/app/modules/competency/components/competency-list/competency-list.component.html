@@ -21,11 +21,8 @@
     <ng-template pTemplate="body" let-competency let-columns="columns">
         <tr>
             <td *ngFor="let col of columns">
-                <div *ngIf="isStringField(col.field)">
+                <div *ngIf="col.field !== 'actions'">
                     {{ competency[col.field] }}
-                </div>
-                <div *ngIf="col.field === 'idCategory'">
-                    {{ getCategoryName(competency[col.field]) }}
                 </div>
                 <div *ngIf="col.field === 'actions'">
                     <div class="action-buttons">

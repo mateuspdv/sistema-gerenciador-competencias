@@ -15,8 +15,6 @@ export class CompetencyListComponent implements OnInit {
 
   competencies: CompetencyModel[] = [];
 
-  categories: CategoryModel[] = [];
-
   cols: any[] = [];
 
   displayForm: boolean = false;
@@ -29,14 +27,13 @@ export class CompetencyListComponent implements OnInit {
   ngOnInit(): void {
     this.setColumns();
     this.findCompetencies();
-    this.findCategories();
   }
 
   setColumns(): void {
     this.cols = [
         {field: 'name', header: 'Nome'},
         {field: 'description', header: 'Descrição'},
-        {field: 'idCategory', header: 'Categoria'},
+        {field: 'nameCategory', header: 'Categoria'},
         {field: 'actions', header: 'Ações'},
     ];
   }
@@ -61,17 +58,6 @@ export class CompetencyListComponent implements OnInit {
     });
   }
 
-  findCategories(): void {
-    this.categoryService.findAll().subscribe({
-        next: (categories) => {
-            this.categories = categories;
-        },
-        error: (error) => {
-            this.addToast('error', 'Erro ao carregar categorias', error.message);
-        }
-    });
-  }
-
   deleteCompetency(idCompetency: number): void {
     this.competencyService.deleteById(idCompetency).subscribe({
         next: () => {
@@ -82,15 +68,6 @@ export class CompetencyListComponent implements OnInit {
             this.addToast('error', 'Erro ao excluir competência', error.message);
         }
     })
-  }
-
-  getCategoryName(idCategory: number): any {
-    const category = this.categories.find(category => category.id == idCategory);
-    return category?.name;
-  }
-
-  isStringField(field: string): boolean {
-    return field === 'name' || field === 'description';
   }
 
   confirmDeleteCompetency(competency: CompetencyModel) : void {

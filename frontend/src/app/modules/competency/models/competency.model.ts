@@ -3,4 +3,5 @@ export interface CompetencyModel {
     name: string;
     description: string;
     idCategory: number;
+    nameCategory: string;
 }

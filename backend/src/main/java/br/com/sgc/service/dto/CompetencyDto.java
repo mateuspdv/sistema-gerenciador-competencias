@@ -30,4 +30,6 @@ public class CompetencyDto implements Serializable {
     @NotNull(message = MessageUtil.VALIDATION_COMPETENCY_ID_CATEGORY_NOT_NULL)
     private Long idCategory;
 
+    private String nameCategory;
+
 }

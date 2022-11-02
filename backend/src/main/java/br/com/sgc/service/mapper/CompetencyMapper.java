@@ -10,10 +10,12 @@ public interface CompetencyMapper extends EntityMapper<CompetencyDto, Competency
 
     @Override
     @Mapping(source = "categoryModel.id", target = "idCategory")
+    @Mapping(source = "categoryModel.name", target = "nameCategory")
     CompetencyDto toDto(CompetencyModel entity);
 
     @Override
     @Mapping(source = "idCategory", target = "categoryModel.id")
+    @Mapping(source = "nameCategory", target = "categoryModel.name")
     CompetencyModel toEntity(CompetencyDto dto);
 
 }
