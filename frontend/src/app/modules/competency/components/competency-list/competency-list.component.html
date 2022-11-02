@@ -42,7 +42,10 @@
     </ng-template>
 </p-table>
 
-<app-competency-form [showForm]="displayForm" (closeForm)="closeForm()"></app-competency-form>
+<app-competency-form [showForm]="displayForm"
+                     (closeForm)="closeForm()"
+                     (sendToastMessage)="displayErrorMessage($event)"
+                     (refreshCompetencies)="refreshCompetencies()"></app-competency-form>
 
 <p-toast></p-toast>
 

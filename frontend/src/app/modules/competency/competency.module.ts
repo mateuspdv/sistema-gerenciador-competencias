@@ -10,6 +10,8 @@ import {TooltipModule} from 'primeng/tooltip';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { CompetencyFormComponent } from './components/competency-form/competency-form.component';
 import {DialogModule} from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {DialogModule} from 'primeng/dialog';
     ButtonModule,
     TooltipModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    ReactiveFormsModule,
+    DropdownModule
   ]
 })
 export class CompetencyModule { }

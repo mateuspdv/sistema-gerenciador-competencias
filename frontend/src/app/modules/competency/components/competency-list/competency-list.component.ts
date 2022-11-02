@@ -1,4 +1,3 @@
-import { CategoryModel } from './../../models/category.model';
 import { CategoryService } from './../../services/category.service';
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
@@ -53,7 +52,7 @@ export class CompetencyListComponent implements OnInit {
             this.competencies = competencies;
         },
         error: (error) => {
-            this.addToast('error', 'Erro ao carregar competência', error.message);
+            this.addToast('error', 'Erro ao carregar competências', error.message);
         }
     });
   }
@@ -62,7 +61,7 @@ export class CompetencyListComponent implements OnInit {
     this.competencyService.deleteById(idCompetency).subscribe({
         next: () => {
             this.addToast('success', '', 'Exclusão realizada com sucesso!');
-            this.findCompetencies();
+            this.refreshCompetencies();
         },
         error: (error) => {
             this.addToast('error', 'Erro ao excluir competência', error.message);
@@ -85,6 +84,14 @@ export class CompetencyListComponent implements OnInit {
 
   closeForm(): void {
     this.displayForm = false;
+  }
+
+  displayErrorMessage(event: any) : void {
+    this.addToast(event.severity, event.summary, event.detail);
+  }
+
+  refreshCompetencies(): void {
+    this.findCompetencies();
   }
 
 }

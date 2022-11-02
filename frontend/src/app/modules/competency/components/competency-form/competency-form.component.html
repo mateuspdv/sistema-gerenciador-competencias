@@ -1,4 +1,34 @@
-<p-dialog header="Funcionando"
-          [(visible)]="showForm"
-          [modal]="true"
-          (onHide)="close()"></p-dialog>
+<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()">
+    <ng-template pTemplate="header">
+        <b>Cadastrar Competência</b>
+    </ng-template>
+
+    <form [formGroup]="formGroup">
+        <label for="name">Nome: </label>
+        <input id="name" type="text" formControlName="name">
+
+        <label for="description">Descrição: </label>
+        <input id="description" type="text" formControlName="description">
+
+        <label for="category">Categoria: </label>
+        <p-dropdown [options]="dropdownCategories"
+                    optionLabel="label"
+                    optionValue="value"
+                    formControlName="idCategory"
+                    placeholder="Selecionar Competência"></p-dropdown>
+    </form>
+
+    <ng-template pTemplate="footer">
+        <button pButton
+                type="button"
+                label="Cancelar"
+                class="p-button-raised p-button-rounded p-button-secondary"
+                (click)="close()"></button>
+
+        <button pButton
+                type="button"
+                label="Cadastrar"
+                class="p-button-raised p-button-rounded p-button-secondary"
+                (click)="submit()"></button>
+    </ng-template>
+</p-dialog>
