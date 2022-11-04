@@ -20,6 +20,10 @@ export class CompetencyFormComponent implements OnInit {
 
   @Input() showForm: boolean = false;
 
+  @Input() competencyToUpdate!: CompetencyModel;
+
+  @Input() typeAction: string = 'create';
+
   @Output() closeForm: EventEmitter<void> = new EventEmitter<void>();
 
   @Output() sendToastMessage: EventEmitter<ToastMessageModel> = new EventEmitter<ToastMessageModel>();
@@ -37,6 +41,7 @@ export class CompetencyFormComponent implements OnInit {
 
   buildFormGrup(): void {
     this.formGroup = this.formBuilder.group({
+        id: [null],
         name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         idCategory: [null, [Validators.required]]
@@ -64,6 +69,31 @@ export class CompetencyFormComponent implements OnInit {
     });
   }
 
+  updateCompetency(competency: CompetencyModel) {
+    this.competencyService.update(competency).subscribe({
+        next: () => {
+            const toastMessageModel = {
+                severity: 'success',
+                summary: '',
+                detail: 'Competência editada com sucesso'
+            }
+            this.sendToastMessage.emit(toastMessageModel);
+            this.close();
+            this.refreshCompetencies.emit();
+        },
+        error: (error) => {
+            const toastMessageModel = {
+                severity: 'error',
+                summary: 'Erro ao cadastrar competência',
+                detail: error.message
+            }
+            this.sendToastMessage.emit(toastMessageModel);
+            this.close();
+            this.refreshCompetencies.emit();
+        }
+    });
+  }
+
   createCompetency(competency: CompetencyModel) {
     this.competencyService.create(competency).subscribe({
         next: () => {
@@ -75,7 +105,6 @@ export class CompetencyFormComponent implements OnInit {
             this.sendToastMessage.emit(toastMessageModel);
             this.close();
             this.refreshCompetencies.emit();
-            this.formGroup.reset();
         },
         error: (error) => {
             const toastMessageModel = {
@@ -95,7 +124,18 @@ export class CompetencyFormComponent implements OnInit {
   }
 
   submit(): void {
-    this.createCompetency(this.formGroup.value);
+    if(this.typeAction == 'create') {
+        this.createCompetency(this.formGroup.value);
+        return;
+    }
+
+    this.updateCompetency(this.formGroup.value);
+  }
+
+  selectedAction(): void {
+    if(this.typeAction == 'update') {
+        this.formGroup.patchValue(this.competencyToUpdate);
+    }
   }
 
 }

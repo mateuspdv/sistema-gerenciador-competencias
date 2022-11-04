@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()">
+<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()" (onShow)="selectedAction()">
     <ng-template pTemplate="header">
         <b>Cadastrar Competência</b>
     </ng-template>

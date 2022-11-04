@@ -5,7 +5,7 @@
         icon="pi pi-fw pi-pencil"
         pTooltip="Cadastrar Competência"
         tooltipPosition="top"
-        (click)="openForm()"></button>
+        (click)="createCompetency()"></button>
 
     <h3 class="title">Competências</h3>
 </div>
@@ -29,7 +29,8 @@
                         <button pButton
                                 type="button"
                                 label="Editar"
-                                class="p-button-raised p-button-rounded p-button-secondary"></button>
+                                class="p-button-raised p-button-rounded p-button-secondary"
+                                (click)="defineCompetencyToUpdate(competency)"></button>
                         <button pButton
                                 type="button"
                                 label="Excluir"
@@ -45,7 +46,9 @@
 <app-competency-form [showForm]="displayForm"
                      (closeForm)="closeForm()"
                      (sendToastMessage)="displayErrorMessage($event)"
-                     (refreshCompetencies)="refreshCompetencies()"></app-competency-form>
+                     (refreshCompetencies)="refreshCompetencies()"
+                     [competencyToUpdate]="selectedCompetency"
+                     [typeAction]="action"></app-competency-form>
 
 <p-toast></p-toast>
 

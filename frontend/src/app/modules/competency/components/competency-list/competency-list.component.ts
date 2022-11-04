@@ -18,6 +18,10 @@ export class CompetencyListComponent implements OnInit {
 
   displayForm: boolean = false;
 
+  selectedCompetency!: CompetencyModel;
+
+  action: string = 'create';
+
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
               private categoryService: CategoryService,
@@ -66,7 +70,7 @@ export class CompetencyListComponent implements OnInit {
         error: (error) => {
             this.addToast('error', 'Erro ao excluir competência', error.message);
         }
-    })
+    });
   }
 
   confirmDeleteCompetency(competency: CompetencyModel) : void {
@@ -92,6 +96,17 @@ export class CompetencyListComponent implements OnInit {
 
   refreshCompetencies(): void {
     this.findCompetencies();
+  }
+
+  defineCompetencyToUpdate(competency: CompetencyModel): void {
+    this.action = 'update';
+    this.selectedCompetency = competency;
+    this.openForm();
+  }
+
+  createCompetency(): void {
+    this.action = 'create';
+    this.openForm();
   }
 
 }
