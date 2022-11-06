@@ -12,6 +12,7 @@ import { CompetencyFormComponent } from './components/competency-form/competency
 import {DialogModule} from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {DropdownModule} from 'primeng/dropdown';
     ConfirmDialogModule,
     DialogModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule
   ]
 })
 export class CompetencyModule { }

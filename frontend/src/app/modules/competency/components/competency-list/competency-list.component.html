@@ -45,7 +45,6 @@
 
 <app-competency-form [showForm]="displayForm"
                      (closeForm)="closeForm()"
-                     (sendToastMessage)="displayErrorMessage($event)"
                      (refreshCompetencies)="refreshCompetencies()"
                      [competencyToUpdate]="selectedCompetency"
                      [typeAction]="action"></app-competency-form>

@@ -24,7 +24,6 @@ export class CompetencyListComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
-              private categoryService: CategoryService,
               private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -88,10 +87,6 @@ export class CompetencyListComponent implements OnInit {
 
   closeForm(): void {
     this.displayForm = false;
-  }
-
-  displayErrorMessage(event: any) : void {
-    this.addToast(event.severity, event.summary, event.detail);
   }
 
   refreshCompetencies(): void {

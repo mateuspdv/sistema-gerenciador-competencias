@@ -1,11 +1,10 @@
 import { CompetencyService } from './../../services/competency.service';
 import { CompetencyModel } from './../../models/competency.model';
-import { ToastMessageModel } from '../../../../shared/models/toast-message.model';
 import { CategoryService } from './../../services/category.service';
 import { CategoryModel } from './../../models/category.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-competency-form',
@@ -26,13 +25,12 @@ export class CompetencyFormComponent implements OnInit {
 
   @Output() closeForm: EventEmitter<void> = new EventEmitter<void>();
 
-  @Output() sendToastMessage: EventEmitter<ToastMessageModel> = new EventEmitter<ToastMessageModel>();
-
   @Output() refreshCompetencies: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private categoryService: CategoryService,
               private formBuilder: FormBuilder,
-              private competencyService: CompetencyService) { }
+              private competencyService: CompetencyService,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.buildFormGrup();
@@ -48,6 +46,15 @@ export class CompetencyFormComponent implements OnInit {
     });
   }
 
+  addToast(severity: string, summary: string, detail: string): void {
+    this.messageService.add({
+        severity: severity,
+        summary: summary,
+        detail: detail,
+        life: 4000
+    });
+  }
+
   close(): void {
     this.formGroup.reset();
     this.closeForm.emit();
@@ -59,12 +66,7 @@ export class CompetencyFormComponent implements OnInit {
             this.convertCategoriesToDropdown(categories);
         },
         error: (error) => {
-            const toastMessageModel = {
-                severity: 'error',
-                summary: 'Erro ao carregar categorias',
-                detail: error.message
-            }
-            this.sendToastMessage.emit(toastMessageModel);
+            this.addToast('error', 'Erro ao carregar categorias', error.message);
         }
     });
   }
@@ -72,22 +74,12 @@ export class CompetencyFormComponent implements OnInit {
   updateCompetency(competency: CompetencyModel) {
     this.competencyService.update(competency).subscribe({
         next: () => {
-            const toastMessageModel = {
-                severity: 'success',
-                summary: '',
-                detail: 'Competência editada com sucesso'
-            }
-            this.sendToastMessage.emit(toastMessageModel);
+            this.addToast('success', '', 'Competência editada com sucesso');
             this.close();
             this.refreshCompetencies.emit();
         },
         error: (error) => {
-            const toastMessageModel = {
-                severity: 'error',
-                summary: 'Erro ao cadastrar competência',
-                detail: error.message
-            }
-            this.sendToastMessage.emit(toastMessageModel);
+            this.addToast('error', 'Erro ao cadastrar competência', error.message);
             this.close();
             this.refreshCompetencies.emit();
         }
@@ -97,22 +89,13 @@ export class CompetencyFormComponent implements OnInit {
   createCompetency(competency: CompetencyModel) {
     this.competencyService.create(competency).subscribe({
         next: () => {
-            const toastMessageModel = {
-                severity: 'success',
-                summary: '',
-                detail: 'Competência cadastrada com sucesso'
-            }
-            this.sendToastMessage.emit(toastMessageModel);
+            this.addToast('success','', 'Competência cadastrada com sucesso');
             this.close();
             this.refreshCompetencies.emit();
         },
         error: (error) => {
-            const toastMessageModel = {
-                severity: 'error',
-                summary: 'Erro ao cadastrar competência',
-                detail: error.message
-            }
-            this.sendToastMessage.emit(toastMessageModel);
+            console.log(error);
+            this.addToast('error', 'Erro ao cadastrar competência', error.message);
         }
     });
   }
@@ -136,6 +119,20 @@ export class CompetencyFormComponent implements OnInit {
     if(this.typeAction == 'update') {
         this.formGroup.patchValue(this.competencyToUpdate);
     }
+  }
+
+  getLabelButtonSubmit(): string {
+    if(this.typeAction == 'create') {
+        return 'Cadastrar';
+    }
+    return 'Editar';
+  }
+
+  getTitle(): string {
+    if(this.typeAction == 'create') {
+        return 'Cadastrar Competência';
+    }
+    return 'Editar Competência - ' + this.competencyToUpdate.name;
   }
 
 }

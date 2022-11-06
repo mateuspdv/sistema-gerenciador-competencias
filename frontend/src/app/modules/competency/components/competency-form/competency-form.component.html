@@ -1,34 +1,44 @@
-<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()" (onShow)="selectedAction()">
+<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()" (onShow)="selectedAction()" [resizable]="false" [style]="{width: '35vw'}">
     <ng-template pTemplate="header">
-        <b>Cadastrar Competência</b>
+        <b class="title">{{ getTitle() }}</b>
     </ng-template>
 
     <form [formGroup]="formGroup">
-        <label for="name">Nome: </label>
-        <input id="name" type="text" formControlName="name">
+        <div class="formgrid grid">
+            <div class="field col-12">
+                <label for="name">Nome: </label>
+                <input id="name" type="text" formControlName="name" pInputText class="width-100" autofocus>
+            </div>
 
-        <label for="description">Descrição: </label>
-        <input id="description" type="text" formControlName="description">
+            <div class="field col-12">
+                <label for="description">Descrição: </label>
+                <input id="description" type="text" formControlName="description" pInputText class="width-100">
+            </div>
 
-        <label for="category">Categoria: </label>
-        <p-dropdown [options]="dropdownCategories"
-                    optionLabel="label"
-                    optionValue="value"
-                    formControlName="idCategory"
-                    placeholder="Selecionar Competência"></p-dropdown>
+            <div class="field col-12">
+                <label for="category" class="width-100">Categoria: </label>
+                <p-dropdown [options]="dropdownCategories"
+                            optionLabel="label"
+                            optionValue="value"
+                            formControlName="idCategory"
+                            placeholder="Selecionar Competência" appendTo="body"></p-dropdown>
+            </div>
+        </div>
     </form>
 
     <ng-template pTemplate="footer">
-        <button pButton
-                type="button"
-                label="Cancelar"
-                class="p-button-raised p-button-rounded p-button-secondary"
-                (click)="close()"></button>
+        <div class="footer">
+            <button pButton
+                    type="button"
+                    label="Cancelar"
+                    class="p-button-raised p-button-rounded p-button-secondary"
+                    (click)="close()"></button>
 
-        <button pButton
-                type="button"
-                label="Cadastrar"
-                class="p-button-raised p-button-rounded p-button-secondary"
-                (click)="submit()"></button>
+            <button pButton
+                    type="button"
+                    label="{{ getLabelButtonSubmit() }}"
+                    class="p-button-raised p-button-rounded p-button-secondary"
+                    (click)="submit()"></button>
+        </div>
     </ng-template>
 </p-dialog>
