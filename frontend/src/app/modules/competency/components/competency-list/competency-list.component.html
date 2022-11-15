@@ -51,6 +51,8 @@
 
 <p-toast></p-toast>
 
+<p-paginator [rows]="5" [totalRecords]="totalElements" (onPageChange)="paginate($event)"></p-paginator>
+
 <p-confirmDialog header="Excluir competência"
                  acceptLabel="Sim"
                  rejectLabel="Não"

@@ -1,12 +1,12 @@
 package br.com.sgc.service;
 
 import br.com.sgc.service.dto.CompetencyDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CompetencyService {
 
-    List<CompetencyDto> findAll();
+    Page<CompetencyDto> findAll(Pageable pageable);
 
     CompetencyDto findById(Long idCompetency);
 

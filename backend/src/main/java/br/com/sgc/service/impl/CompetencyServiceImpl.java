@@ -8,10 +8,10 @@ import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.CompetencyMapper;
 import br.com.sgc.util.MessageUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +24,8 @@ public class CompetencyServiceImpl implements CompetencyService {
 
     private final CompetencyMapper competencyMapper;
 
-    public List<CompetencyDto> findAll() {
-        return competencyMapper.toDto(competencyRepository.findAll());
+    public Page<CompetencyDto> findAll(Pageable pageable) {
+        return competencyRepository.findAll(pageable).map(competencyMapper::toDto);
     }
 
     public CompetencyDto findById(Long idCompetency) {

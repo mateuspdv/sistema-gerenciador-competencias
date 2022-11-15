@@ -12,8 +12,8 @@ export class CompetencyService {
 
   url: string = 'http://localhost:8080/api/competencia';
 
-  findAll(): Observable<CompetencyModel[]> {
-    return this.httpClient.get<CompetencyModel[]>(this.url);
+  findAll(page: number): Observable<CompetencyModel[]> {
+    return this.httpClient.get<CompetencyModel[]>(this.url + '?page=' + page);
   }
 
   findById(idCompetency: number): Observable<CompetencyModel> {

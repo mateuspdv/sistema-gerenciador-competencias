@@ -1,8 +1,8 @@
-import { CategoryService } from './../../services/category.service';
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Paginator } from 'primeng/paginator';
 
 @Component({
   selector: 'app-competency-list',
@@ -22,13 +22,21 @@ export class CompetencyListComponent implements OnInit {
 
   action: string = 'create';
 
+  totalElements: number = 0;
+
+  currentPage: number = 0;
+
+  totalPages: number = 0;
+
+  numberElementsPage: number = 0;
+
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
               private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.setColumns();
-    this.findCompetencies();
+    this.findCompetencies(this.currentPage);
   }
 
   setColumns(): void {
@@ -49,10 +57,13 @@ export class CompetencyListComponent implements OnInit {
     });
   }
 
-  findCompetencies(): void {
-    this.competencyService.findAll().subscribe({
-        next: (competencies) => {
-            this.competencies = competencies;
+  findCompetencies(page: number): void {
+    this.competencyService.findAll(page).subscribe({
+        next: (data: any) => {
+            console.log(data);
+            this.competencies = data['content'];
+            this.totalElements = data['totalElements'];
+            this.numberElementsPage = data['numberOfElements'];
         },
         error: (error) => {
             this.addToast('error', 'Erro ao carregar competências', error.message);
@@ -90,7 +101,11 @@ export class CompetencyListComponent implements OnInit {
   }
 
   refreshCompetencies(): void {
-    this.findCompetencies();
+    if(this.action == 'create' && this.numberElementsPage == 5) {
+        this.findCompetencies(this.currentPage + 1);
+        return;
+    }
+    this.findCompetencies(this.currentPage);
   }
 
   defineCompetencyToUpdate(competency: CompetencyModel): void {
@@ -102,6 +117,11 @@ export class CompetencyListComponent implements OnInit {
   createCompetency(): void {
     this.action = 'create';
     this.openForm();
+  }
+
+  paginate(event: any) {
+    this.currentPage = event.page;
+    this.findCompetencies(this.currentPage);
   }
 
 }
