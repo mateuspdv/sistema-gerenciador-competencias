@@ -15,6 +15,6 @@ import { AppLayoutModule } from './layout/app.layout.module';
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

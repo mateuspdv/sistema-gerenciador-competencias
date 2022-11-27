@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextModule} from 'primeng/inputtext';
 import {PaginatorModule} from 'primeng/paginator';
+import { FormAutoFocusDirective } from 'src/app/shared/directives/form-auto-focus.directive';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {PaginatorModule} from 'primeng/paginator';
     ReactiveFormsModule,
     DropdownModule,
     InputTextModule,
-    PaginatorModule
+    PaginatorModule,
+    FormAutoFocusDirective
   ]
 })
 export class CompetencyModule { }
