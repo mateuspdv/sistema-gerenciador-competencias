@@ -30,6 +30,8 @@ export class CompetencyListComponent implements OnInit {
 
   numberElementsPage: number = 0;
 
+  isSearch: boolean = false;
+
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
               private confirmationService: ConfirmationService) { }
@@ -60,13 +62,25 @@ export class CompetencyListComponent implements OnInit {
   findCompetencies(page: number): void {
     this.competencyService.findAll(page).subscribe({
         next: (data: any) => {
-            console.log(data);
             this.competencies = data['content'];
             this.totalElements = data['totalElements'];
             this.numberElementsPage = data['numberOfElements'];
         },
         error: (error) => {
             this.addToast('error', 'Erro ao carregar competências', error.message);
+        }
+    });
+  }
+
+  globalSearchFilter(query: string): void {
+    this.competencyService.globalSearchFilter(query).subscribe({
+        next: (data: any) => {
+            this.competencies = data['content'];
+            this.totalElements = data['totalElements'];
+            this.numberElementsPage = data['numberOfElements'];
+        },
+        error: (error) => {
+            this.addToast('error', 'Erro ao realizar busca por competências', error.message);
         }
     });
   }
@@ -120,8 +134,20 @@ export class CompetencyListComponent implements OnInit {
   }
 
   paginate(event: any) {
-    this.currentPage = event.page;
-    this.findCompetencies(this.currentPage);
+    if(!this.isSearch) {
+        this.currentPage = event.page;
+        this.findCompetencies(this.currentPage);
+    }
+    this.isSearch = false;
+  }
+
+  search(event: any): void {
+    this.isSearch = true;
+    if(event.target.value == '' || event.target.value == undefined) {
+        this.findCompetencies(0);
+        return;
+    }
+    this.globalSearchFilter(event.target.value);
   }
 
 }

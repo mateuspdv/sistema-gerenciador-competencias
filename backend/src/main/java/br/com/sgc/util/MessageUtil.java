@@ -8,6 +8,7 @@ public class MessageUtil {
 
     /* Messages for ApiOperation annotation */
     public static final String OPERATION_CATEGORY_FIND_ALL = "Retorna todas as categorias cadastradas no sistema";
+    public static final String OPERATION_CATEGORY_GLOBAL_SEARCH_FILTER = "Retorna as categorias relacionadas a uma pesquisa global";
     public static final String OPERATION_CATEGORY_FIND_BY_ID = "Retorna uma categoria cadastrada no sistema pelo id";
     public static final String OPERATION_COMPETENCY_FIND_ALL = "Retorna todas as competências cadastradas no sistema";
     public static final String OPERATION_COMPETENCY_FIND_BY_ID = "Retorna uma competência cadastrada no sistema pelo id";

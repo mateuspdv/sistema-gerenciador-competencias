@@ -1,7 +1,9 @@
 package br.com.sgc.service.dto;
 
 import br.com.sgc.util.MessageUtil;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,6 +13,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompetencyDto implements Serializable {
 
     private Long id;

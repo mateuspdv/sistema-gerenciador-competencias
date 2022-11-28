@@ -28,6 +28,10 @@ public class CompetencyServiceImpl implements CompetencyService {
         return competencyRepository.findAll(pageable).map(competencyMapper::toDto);
     }
 
+    public Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query) {
+        return competencyRepository.globalSearchFilter(pageable, query);
+    }
+
     public CompetencyDto findById(Long idCompetency) {
         return competencyMapper.toDto(competencyRepository.findById(idCompetency)
                 .orElseThrow(() -> new EntityNotFoundException(MessageUtil.COMPETENCY_NOT_FOUND)));

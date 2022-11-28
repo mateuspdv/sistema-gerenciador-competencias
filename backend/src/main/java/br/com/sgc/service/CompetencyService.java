@@ -8,6 +8,8 @@ public interface CompetencyService {
 
     Page<CompetencyDto> findAll(Pageable pageable);
 
+    Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query);
+
     CompetencyDto findById(Long idCompetency);
 
     CompetencyDto create(CompetencyDto competencyDto);

@@ -31,6 +31,12 @@ public class CompetencyController {
         return ResponseEntity.status(HttpStatus.OK).body(competencyService.findAll(pageable));
     }
 
+    @GetMapping("/filtro/{query}")
+    @ApiOperation(MessageUtil.OPERATION_CATEGORY_GLOBAL_SEARCH_FILTER)
+    public ResponseEntity<Page<CompetencyDto>> globalSearchFilter(@PageableDefault(size = 5) Pageable pageable, @PathVariable String query) {
+        return ResponseEntity.status(HttpStatus.OK).body(competencyService.globalSearchFilter(pageable, query));
+    }
+
     @GetMapping("/{idCompetency}")
     @ApiOperation(MessageUtil.OPERATION_COMPETENCY_FIND_BY_ID)
     public ResponseEntity<CompetencyDto> findById(@PathVariable Long idCompetency) {

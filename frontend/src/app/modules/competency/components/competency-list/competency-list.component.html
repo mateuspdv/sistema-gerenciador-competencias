@@ -11,6 +11,15 @@
 </div>
 
 <p-table [columns]="cols" [value]="competencies">
+    <ng-template pTemplate="caption">
+        <div style="display: flex; justify-content: space-between;">
+            <span>Lista de competências cadastradas</span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" placeholder="Filtro Global" (keyup.enter)="search($event)">
+            </span>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
