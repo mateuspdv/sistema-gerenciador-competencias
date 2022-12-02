@@ -1,3 +1,69 @@
-<p>competency-list works!</p>
+<div class="top-layout">
+    <button pButton
+        type="button"
+        class="p-button-raised p-button-rounded p-button-success"
+        icon="pi pi-fw pi-pencil"
+        pTooltip="Cadastrar Competência"
+        tooltipPosition="top"
+        (click)="createCompetency()"></button>
 
-<p>Agora Sim Funcionandooooo</p>
+    <h3 class="title">Competências</h3>
+</div>
+
+<p-table [columns]="cols" [value]="competencies">
+    <ng-template pTemplate="caption">
+        <div style="display: flex; justify-content: space-between;">
+            <span>Lista de competências cadastradas</span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" placeholder="Filtro Global" (keyup.enter)="search($event)">
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-competency let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <div *ngIf="col.field !== 'actions'">
+                    {{ competency[col.field] }}
+                </div>
+                <div *ngIf="col.field === 'actions'">
+                    <div class="action-buttons">
+                        <button pButton
+                                type="button"
+                                label="Editar"
+                                class="p-button-raised p-button-rounded p-button-secondary"
+                                (click)="defineCompetencyToUpdate(competency)"></button>
+                        <button pButton
+                                type="button"
+                                label="Excluir"
+                                class="p-button-raised p-button-rounded p-button-danger"
+                                (click)="confirmDeleteCompetency(competency)"></button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<app-competency-form [showForm]="displayForm"
+                     (closeForm)="closeForm()"
+                     (refreshCompetencies)="refreshCompetencies()"
+                     [competencyToUpdate]="selectedCompetency"
+                     [typeAction]="action"></app-competency-form>
+
+<p-toast></p-toast>
+
+<p-paginator [rows]="5" [totalRecords]="totalElements" (onPageChange)="paginate($event)"></p-paginator>
+
+<p-confirmDialog header="Excluir competência"
+                 acceptLabel="Sim"
+                 rejectLabel="Não"
+                 acceptButtonStyleClass="p-button-secondary p-button-sm"
+                 rejectButtonStyleClass="p-button-secondary p-button-sm"></p-confirmDialog>
