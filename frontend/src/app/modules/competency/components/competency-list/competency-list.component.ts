@@ -1,8 +1,7 @@
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Paginator } from 'primeng/paginator';
 
 @Component({
   selector: 'app-competency-list',
@@ -30,7 +29,9 @@ export class CompetencyListComponent implements OnInit {
 
   numberElementsPage: number = 0;
 
-  isSearch: boolean = false;
+  isSearch = false;
+
+  query: string = '';
 
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
@@ -72,8 +73,8 @@ export class CompetencyListComponent implements OnInit {
     });
   }
 
-  globalSearchFilter(query: string): void {
-    this.competencyService.globalSearchFilter(query).subscribe({
+  globalSearchFilter(query: string, page: number): void {
+    this.competencyService.globalSearchFilter(query, page).subscribe({
         next: (data: any) => {
             this.competencies = data['content'];
             this.totalElements = data['totalElements'];
@@ -134,20 +135,24 @@ export class CompetencyListComponent implements OnInit {
   }
 
   paginate(event: any) {
-    if(!this.isSearch) {
-        this.currentPage = event.page;
-        this.findCompetencies(this.currentPage);
+    this.currentPage = event.page;
+    if(this.isSearch) {
+        this.globalSearchFilter(this.query, this.currentPage);
+        return;
     }
-    this.isSearch = false;
+    this.findCompetencies(this.currentPage);
   }
 
   search(event: any): void {
-    this.isSearch = true;
-    if(event.target.value == '' || event.target.value == undefined) {
-        this.findCompetencies(0);
+    this.query = event.target.value;
+    this.currentPage = 0;
+    if(this.query == '' || this.query == undefined) {
+        this.isSearch = false;
+        this.findCompetencies(this.currentPage);
         return;
     }
-    this.globalSearchFilter(event.target.value);
+    this.isSearch = true;
+    this.globalSearchFilter(this.query, this.currentPage);
   }
 
 }

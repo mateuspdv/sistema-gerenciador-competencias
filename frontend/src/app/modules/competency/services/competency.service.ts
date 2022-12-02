@@ -16,8 +16,8 @@ export class CompetencyService {
     return this.httpClient.get<CompetencyModel[]>(this.url + '?page=' + page);
   }
 
-  globalSearchFilter(query: string): Observable<CompetencyModel[]> {
-    return this.httpClient.get<CompetencyModel[]>(this.url + '/filtro/' + query);
+  globalSearchFilter(query: string, page: number): Observable<CompetencyModel[]> {
+    return this.httpClient.get<CompetencyModel[]>(this.url + '/filtro/' + query + '?page=' + page);
   }
 
   findById(idCompetency: number): Observable<CompetencyModel> {
