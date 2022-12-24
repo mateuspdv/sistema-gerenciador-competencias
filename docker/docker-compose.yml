@@ -3,22 +3,11 @@ version: '3'
 services:
 
   sonarqube:
-    container_name: sonarqube_container
-    image: sonarqube
-    environment:
-      - SONARQUBE_JDBC_USERNAME=sgc
-      - SONARQUBE_JDBC_PASSWORD=sgc
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://database:5432/sgc
-    ports:
-      - "9001:9000"
-      - "9092:9092"
+    extends:
+      file: sonarqube.yml
+      service: sonarqube
 
   database:
-    container_name: postgres_container
-    image: postgres
-    environment:
-      - POSTGRES_USER=sgc
-      - POSTGRES_PASSWORD=sgc
-      - POSTGRES_DB=sgc
-    ports:
-      - "5432:5432"
+    extends:
+      file: postgresql.yml
+      service: database
