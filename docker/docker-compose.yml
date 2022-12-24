@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  sonarqube:
+    extends:
+      file: sonarqube.yml
+      service: sonarqube
+
+  database:
+    extends:
+      file: postgresql.yml
+      service: database
