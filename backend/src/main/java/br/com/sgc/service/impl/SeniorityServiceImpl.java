@@ -28,4 +28,10 @@ public class SeniorityServiceImpl implements SeniorityService {
                 .orElseThrow(() -> new EntityNotFoundException(MessageUtil.SENIORITY_NOT_FOUND)));
     }
 
+    public void existsById(Long idSeniority) {
+        if (!seniorityRepository.existsById(idSeniority)) {
+            throw new EntityNotFoundException(MessageUtil.SENIORITY_NOT_FOUND);
+        }
+    }
+
 }

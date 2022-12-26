@@ -10,4 +10,6 @@ public interface SeniorityService {
 
     SeniorityDto findById(Long idSeniority);
 
+    void existsById(Long idSeniority);
+
 }
