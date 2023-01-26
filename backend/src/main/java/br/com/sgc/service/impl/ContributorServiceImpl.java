@@ -4,14 +4,16 @@ import br.com.sgc.repository.ContributorRepository;
 import br.com.sgc.service.ContributorService;
 import br.com.sgc.service.SeniorityService;
 import br.com.sgc.service.dto.ContributorDto;
+import br.com.sgc.service.dto.ViewContributorDto;
 import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.ContributorMapper;
+import br.com.sgc.service.mapper.ViewContributorMapper;
 import br.com.sgc.util.MessageUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +26,10 @@ public class ContributorServiceImpl implements ContributorService {
 
     private final ContributorMapper contributorMapper;
 
-    public List<ContributorDto> findAll() {
-        return contributorMapper.toDto(contributorRepository.findAll());
+    private final ViewContributorMapper viewContributorMapper;
+
+    public Page<ViewContributorDto> findAll(Pageable pageable) {
+        return contributorRepository.findAll(pageable).map(viewContributorMapper::toDto);
     }
 
     public ContributorDto findById(Long idContributor) {

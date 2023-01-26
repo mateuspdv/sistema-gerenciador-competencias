@@ -18,7 +18,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Funcionalidades',
                 items: [
                     { label: 'Competência', icon: 'pi pi-fw pi-book', routerLink: ['/competencia'] },
-                    { label: 'Colaborador', icon: 'pi pi-fw pi-user', routerLink: ['/uikit/input'] },
+                    { label: 'Colaborador', icon: 'pi pi-fw pi-user', routerLink: ['/colaborador'] },
                     { label: 'Turma', icon: 'pi pi-fw pi-users', routerLink: ['/uikit/floatlabel'] }
                 ]
             }

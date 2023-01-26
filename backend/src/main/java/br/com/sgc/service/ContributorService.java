@@ -1,12 +1,13 @@
 package br.com.sgc.service;
 
 import br.com.sgc.service.dto.ContributorDto;
-
-import java.util.List;
+import br.com.sgc.service.dto.ViewContributorDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ContributorService {
 
-    List<ContributorDto> findAll();
+    Page<ViewContributorDto> findAll(Pageable pageable);
 
     ContributorDto findById(Long idContributor);
 
