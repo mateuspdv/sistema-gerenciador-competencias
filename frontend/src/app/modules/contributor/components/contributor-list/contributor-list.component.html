@@ -52,13 +52,22 @@
                                 class="p-button-outlined p-button-raised p-button-rounded button-color"
                                 pTooltip="Excluir"
                                 tooltipPosition="top"
-                                (click)="deleteById()"></button>
+                                (click)="delete(contributor)"></button>
                     </div>
                 </div>
             </td>
         </tr>
     </ng-template>
 </p-table>
+
+<p-toast></p-toast>
+
+<p-confirmDialog header="Excluir Colaborador"
+                 acceptLabel="Sim"
+                 rejectLabel="Não"
+                 acceptButtonStyleClass="p-button-secondary p-button-sm"
+                 rejectButtonStyleClass="p-button-secondary p-button-sm"
+                 defaultFocus="none"></p-confirmDialog>
 
 <app-contributor-form [contributorToUpdate]="selectedContributor"
                       [editing]="editing"

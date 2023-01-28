@@ -22,4 +22,8 @@ export class ContributorService {
         return this.httpClient.post<ContributorModel>(this.url, contributor);
     }
 
+    deleteById(idContributor: number): Observable<void> {
+        return this.httpClient.delete<void>(this.url + `/${idContributor}`);
+    }
+
 }

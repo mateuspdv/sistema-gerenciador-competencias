@@ -4,7 +4,7 @@ import { SeniorityService } from './../../services/seniority.service';
 import { ContributorService } from './../../services/contributor.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-contributor-form',
@@ -27,7 +27,8 @@ export class ContributorFormComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private contributorService: ContributorService,
-        private seniorityService: SeniorityService) { }
+        private seniorityService: SeniorityService,
+        private messageService: MessageService) { }
 
     ngOnInit(): void {
         this.buildFormGrup();
@@ -58,10 +59,8 @@ export class ContributorFormComponent implements OnInit {
         this.contributorService.create(contributor)
             .subscribe({
                 next: () => {
-                    console.log('Colaborador criado com sucesso!');
-                    this.showForm = false;
-                    this.editing = false;
-                    this.closeForm.emit();
+                    this.addMessage('success', 'Colaborador cadastrado com sucesso!', 4000);
+                    this.close();
                 },
                 error: (error) => {
                     console.log(error);
@@ -69,14 +68,26 @@ export class ContributorFormComponent implements OnInit {
             })
     }
 
+    addMessage(severity: string, detail: string, life: number): void {
+        this.messageService.add({
+            severity: severity,
+            detail: detail,
+            life: life
+        });
+    }
+
     close(): void {
         this.showForm = false;
+        this.editing = false;
         this.formGroup.reset();
         this.closeForm.emit();
     }
 
     isEditing(): void {
-
+        if (this.editing) {
+            console.log('Lógica editando');
+        }
+        this.formGroup.get('idSeniority')?.setValue(this.dropdownSeniorities[1].value);
     }
 
     getTitle(): string {

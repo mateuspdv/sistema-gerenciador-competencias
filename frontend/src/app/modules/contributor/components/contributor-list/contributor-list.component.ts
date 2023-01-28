@@ -2,11 +2,13 @@ import { Page } from './../../../../shared/models/page.model';
 import { Component, OnInit } from '@angular/core';
 import { ContributorService } from '../../services/contributor.service';
 import { ViewContributorModel } from '../../models/view-contributor.model';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-contributor-list',
     templateUrl: './contributor-list.component.html',
-    styleUrls: ['./contributor-list.component.scss']
+    styleUrls: ['./contributor-list.component.scss'],
+    providers: [MessageService, ConfirmationService]
 })
 export class ContributorListComponent implements OnInit {
 
@@ -20,7 +22,9 @@ export class ContributorListComponent implements OnInit {
 
     cols: any[] = [];
 
-    constructor(private contributorService: ContributorService) { }
+    constructor(private contributorService: ContributorService,
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {
         this.setColumns();
@@ -31,7 +35,28 @@ export class ContributorListComponent implements OnInit {
         this.contributorService.findAll(page)
             .subscribe((data: Page<ViewContributorModel>) => {
                 this.page = data;
+            });
+    }
+
+    deleteById(idContributor: number): void {
+        this.contributorService.deleteById(idContributor)
+            .subscribe({
+                next: () => {
+                    this.addMessage('success', 'Colaborador excluído com sucesso!', 4000);
+                    this.refreshData();
+                },
+                error: (error) => {
+                    console.log(error);
+                }
             })
+    }
+
+    addMessage(severity: string, detail: string, life: number): void {
+        this.messageService.add({
+            severity: severity,
+            detail: detail,
+            life: life
+        });
     }
 
     setColumns(): void {
@@ -47,10 +72,6 @@ export class ContributorListComponent implements OnInit {
         return contributor.firstName + ' ' + contributor.lastName;
     }
 
-    create(): void {
-
-    }
-
     update(): void {
 
     }
@@ -59,8 +80,13 @@ export class ContributorListComponent implements OnInit {
 
     }
 
-    deleteById(): void {
-
+    delete(contributor: ViewContributorModel): void {
+        this.confirmationService.confirm({
+            message: `Deseja realmente excluir o Colaborador ${contributor.firstName} ${contributor.lastName}?`,
+            accept: () => {
+                this.deleteById(contributor.id);
+            }
+        });
     }
 
     refreshData(): void {
