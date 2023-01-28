@@ -10,6 +10,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TooltipModule } from 'primeng/tooltip';
         ReactiveFormsModule,
         DropdownModule,
         InputTextModule,
-        PaginatorModule
+        PaginatorModule,
+        CalendarModule
     ],
 })
 export class SharedModule { }

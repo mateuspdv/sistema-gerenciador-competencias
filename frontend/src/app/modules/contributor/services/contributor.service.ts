@@ -1,3 +1,4 @@
+import { ContributorModel } from './../models/contributor.model';
 import { ViewContributorModel } from './../models/view-contributor.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +16,10 @@ export class ContributorService {
 
     findAll(page: number): Observable<Page<ViewContributorModel>> {
         return this.httpClient.get<Page<ViewContributorModel>>(this.url + `?page=${page}`);
+    }
+
+    create(contributor: ContributorModel): Observable<ContributorModel> {
+        return this.httpClient.post<ContributorModel>(this.url, contributor);
     }
 
 }
