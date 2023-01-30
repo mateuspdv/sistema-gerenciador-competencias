@@ -68,6 +68,19 @@ export class ContributorFormComponent implements OnInit {
             })
     }
 
+    updateContributor(contributor: ContributorModel): void {
+        this.contributorService.update(contributor)
+            .subscribe({
+                next: () => {
+                    this.addMessage('success', 'Colaborador editado com sucesso!', 4000);
+                    this.close();
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            })
+    }
+
     addMessage(severity: string, detail: string, life: number): void {
         this.messageService.add({
             severity: severity,
@@ -85,7 +98,10 @@ export class ContributorFormComponent implements OnInit {
 
     isEditing(): void {
         if (this.editing) {
-            console.log('Lógica editando');
+            this.contributorToUpdate.birthDate = new Date(this.contributorToUpdate.birthDate + 'T00:00');
+            this.contributorToUpdate.admissionDate = new Date(this.contributorToUpdate.admissionDate + 'T00:00');
+            this.formGroup.patchValue(this.contributorToUpdate);
+            return;
         }
         this.formGroup.get('idSeniority')?.setValue(this.dropdownSeniorities[1].value);
     }
@@ -100,7 +116,7 @@ export class ContributorFormComponent implements OnInit {
 
     submitForm(): void {
         if (this.editing) {
-            console.log('Lógica editando aqui');
+            this.updateContributor(this.formGroup.value);
             return;
         }
         this.createContributor(this.formGroup.value);

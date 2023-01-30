@@ -18,8 +18,16 @@ export class ContributorService {
         return this.httpClient.get<Page<ViewContributorModel>>(this.url + `?page=${page}`);
     }
 
+    findById(idContributor: number): Observable<ContributorModel> {
+        return this.httpClient.get<ContributorModel>(this.url + `/${idContributor}`);
+    }
+
     create(contributor: ContributorModel): Observable<ContributorModel> {
         return this.httpClient.post<ContributorModel>(this.url, contributor);
+    }
+
+    update(contributor: ContributorModel): Observable<ContributorModel> {
+        return this.httpClient.put<ContributorModel>(this.url, contributor);
     }
 
     deleteById(idContributor: number): Observable<void> {

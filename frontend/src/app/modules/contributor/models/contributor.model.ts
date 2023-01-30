@@ -5,8 +5,8 @@ export class ContributorModel {
     cpf?: string;
     email?: string;
     // photo
-    birthDate?: Date;
-    admissionDate?: Date;
+    birthDate: Date = new Date();
+    admissionDate: Date = new Date();
     idSeniority?: number;
     nameSeniority?: string;
 }

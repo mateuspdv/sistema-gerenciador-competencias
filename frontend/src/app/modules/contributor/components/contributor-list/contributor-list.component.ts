@@ -1,3 +1,4 @@
+import { ContributorModel } from './../../models/contributor.model';
 import { Page } from './../../../../shared/models/page.model';
 import { Component, OnInit } from '@angular/core';
 import { ContributorService } from '../../services/contributor.service';
@@ -14,7 +15,7 @@ export class ContributorListComponent implements OnInit {
 
     page: Page<ViewContributorModel> = new Page();
 
-    selectedContributor!: ViewContributorModel;
+    selectedContributor!: ContributorModel;
 
     showForm: boolean = false;
 
@@ -36,6 +37,19 @@ export class ContributorListComponent implements OnInit {
             .subscribe((data: Page<ViewContributorModel>) => {
                 this.page = data;
             });
+    }
+
+    findById(idContributor: number): void {
+        this.contributorService.findById(idContributor)
+            .subscribe({
+                next: (contributor: ContributorModel) => {
+                    console.log(contributor);
+                    this.selectedContributor = contributor;
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            })
     }
 
     deleteById(idContributor: number): void {
@@ -72,8 +86,10 @@ export class ContributorListComponent implements OnInit {
         return contributor.firstName + ' ' + contributor.lastName;
     }
 
-    update(): void {
-
+    update(idContributor: number): void {
+        this.findById(idContributor);
+        this.editing = true;
+        this.showForm = true;
     }
 
     view(): void {
@@ -95,6 +111,7 @@ export class ContributorListComponent implements OnInit {
 
     closeForm(): void {
         this.showForm = false;
+        this.editing = false;
         this.refreshData();
     }
 

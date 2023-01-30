@@ -38,14 +38,14 @@
                                 class="p-button-outlined p-button-raised p-button-rounded button-color"
                                 pTooltip="Visualizar"
                                 tooltipPosition="top"
-                        (click)="view()"></button>
+                                (click)="view()"></button>
                         <button pButton
                                 type="button"
                                 icon="pi pi-pencil"
                                 class="p-button-outlined p-button-raised p-button-rounded button-color"
                                 pTooltip="Editar"
                                 tooltipPosition="top"
-                                (click)="update()"></button>
+                                (click)="update(contributor.id)"></button>
                          <button pButton
                                 type="button"
                                 icon="pi pi-trash"
