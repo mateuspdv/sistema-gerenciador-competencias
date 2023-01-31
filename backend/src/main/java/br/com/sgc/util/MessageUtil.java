@@ -7,6 +7,7 @@ public class MessageUtil {
     public static final String COMPETENCY_NOT_FOUND = "Competência não encontrada!";
     public static final String SENIORITY_NOT_FOUND = "Senioridade não encontrada!";
     public static final String CONTRIBUTOR_NOT_FOUND = "Colaborador não encontrado!";
+    public static final String LEVEL_COMPETENCY_NOT_FOUND = "Nível da competência não encontrado!";
 
     /* Messages for ApiOperation annotation */
     public static final String OPERATION_CATEGORY_FIND_ALL = "Retorna todas as categorias cadastradas no sistema";
@@ -24,6 +25,8 @@ public class MessageUtil {
     public static final String OPERATION_CONTRIBUTOR_CREATE = "Cadastra um colaborador no sistema";
     public static final String OPERATION_CONTRIBUTOR_UPDATE = "Atualiza um colaborador no sistema";
     public static final String OPERATION_CONTRIBUTOR_DELETE_BY_ID = "Deleta um colaborador do sistema pelo id";
+    public static final String OPERATION_LEVEL_COMPETENCY_FIND_ALL = "Retorna todos os níveis de competência cadastrados no sistema";
+    public static final String OPERATION_LEVEL_COMPETENCY_FIND_BY_ID = "Retorna um nível de competência cadastrado no sistema pelo id";
 
     /* Messages for validation in dto */
     public static final String VALIDATION_COMPETENCY_NAME_NOT_NULL = "O campo nome não pode ser nulo!";
