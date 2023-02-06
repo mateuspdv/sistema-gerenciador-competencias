@@ -4,6 +4,7 @@ import br.com.sgc.repository.CompetencyRepository;
 import br.com.sgc.service.CategoryService;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.exception.BusinessException;
 import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.CompetencyMapper;
 import br.com.sgc.util.MessageUtil;
@@ -56,6 +57,9 @@ public class CompetencyServiceImpl implements CompetencyService {
 
     public void deleteById(Long idCompetency) {
         existsCompetencyById(idCompetency);
+        if (competencyRepository.haveRelationContributor(idCompetency)) {
+            throw new BusinessException(MessageUtil.EXCEPTION_DELETE_COMPETENCY_LINK_CONTRIBUTOR);
+        }
         competencyRepository.deleteById(idCompetency);
     }
 

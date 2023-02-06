@@ -63,5 +63,7 @@ public class MessageUtil {
     public static final String VALIDATION_CONTRIBUTOR_ADMISSION_DATE_PAST_OR_PRESENT = "O campo data de admissão deve possuir uma data que se encontra no passado ou no presente!";
     public static final String VALIDATION_CONTRIBUTOR_ID_SENIORITY_NOT_NULL = "O campo senioridade não pode ser nulo!";
 
+    /* Messages for exceptions related to deleting entities */
+    public static final String EXCEPTION_DELETE_COMPETENCY_LINK_CONTRIBUTOR = "Competência possui vínculo com a entidade Colaborador!";
 
 }

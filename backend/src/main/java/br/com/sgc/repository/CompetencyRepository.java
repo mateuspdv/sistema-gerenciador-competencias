@@ -18,6 +18,12 @@ public interface CompetencyRepository extends JpaRepository<CompetencyModel, Lon
             "lower(c.description) = lower(:query) or " +
             "lower(c.categoryModel.name) = lower(:query) " +
             "order by c.id")
-    Page<CompetencyDto> globalSearchFilter(Pageable pageable ,@Param("query") String query);
+    Page<CompetencyDto> globalSearchFilter(Pageable pageable, @Param("query") String query);
+
+    @Query("SELECT COUNT(CC.competencyModel.id) > 0 " +
+            " FROM " +
+            " ContributorCompetencyModel CC " +
+            " WHERE CC.competencyModel.id = :idCompetency ")
+    Boolean haveRelationContributor(@Param("idCompetency") Long idCompetency);
 
 }
