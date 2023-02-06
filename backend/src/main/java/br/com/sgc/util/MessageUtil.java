@@ -2,6 +2,10 @@ package br.com.sgc.util;
 
 public class MessageUtil {
 
+    private MessageUtil() {
+        throw new IllegalStateException("Utility class!");
+    }
+
     /* Messages for entities not found */
     public static final String CATEGORY_NOT_FOUND = "Categoria não encontrada!";
     public static final String COMPETENCY_NOT_FOUND = "Competência não encontrada!";

@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -51,5 +53,7 @@ public class ContributorDto implements Serializable {
     private Long idSeniority;
 
     private String nameSeniority;
+
+    private Set<ContributorCompetencyDto> competencies = new HashSet<>();
 
 }

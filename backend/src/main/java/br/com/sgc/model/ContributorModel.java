@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "contributor")
@@ -43,5 +45,8 @@ public class ContributorModel implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_seniority", referencedColumnName = "id")
     private SeniorityModel seniorityModel;
+
+    @OneToMany(mappedBy = "contributorModel")
+    private Set<ContributorCompetencyModel> contributorCompetencyModel = new HashSet<>();
 
 }
