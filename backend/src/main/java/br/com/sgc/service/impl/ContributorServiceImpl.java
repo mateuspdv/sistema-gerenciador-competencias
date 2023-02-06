@@ -14,6 +14,7 @@ import br.com.sgc.service.SeniorityService;
 import br.com.sgc.service.dto.ContributorCompetencyDto;
 import br.com.sgc.service.dto.ContributorDto;
 import br.com.sgc.service.dto.ViewContributorDto;
+import br.com.sgc.service.exception.BusinessException;
 import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.ContributorMapper;
 import br.com.sgc.service.mapper.ViewContributorMapper;
@@ -120,6 +121,9 @@ public class ContributorServiceImpl implements ContributorService {
 
     public void deleteById(Long idContributor) {
         existsById(idContributor);
+        if (contributorRepository.haveRelationCompetency(idContributor)) {
+            throw new BusinessException(MessageUtil.EXCEPTION_DELETE_CONTRIBUTOR_LINK_COMPETENCY);
+        }
         contributorRepository.deleteById(idContributor);
     }
 

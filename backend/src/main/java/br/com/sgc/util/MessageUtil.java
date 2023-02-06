@@ -65,5 +65,6 @@ public class MessageUtil {
 
     /* Messages for exceptions related to deleting entities */
     public static final String EXCEPTION_DELETE_COMPETENCY_LINK_CONTRIBUTOR = "Competência possui vínculo com a entidade Colaborador!";
+    public static final String EXCEPTION_DELETE_CONTRIBUTOR_LINK_COMPETENCY = "Colaborador possui vínculo com a entidade Competência!";
 
 }
