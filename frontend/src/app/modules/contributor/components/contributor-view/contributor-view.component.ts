@@ -10,6 +10,7 @@ export class ContributorViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Iniciar codificação');
   }
 
 }

@@ -22,6 +22,7 @@ public class MessageUtil {
     public static final String OPERATION_COMPETENCY_UPDATE = "Atualiza uma competência no sistema";
     public static final String OPERATION_COMPETENCY_DELETE_BY_ID = "Deleta uma competência do sistema pelo id";
     public static final String OPERATION_COMPETENCY_GLOBAL_SEARCH_FILTER = "Retorna as competências relacionadas a uma pesquisa global";
+    public static final String OPERATION_COMPETENCY_FIND_ALL_DROPDOWN = "Retorna as competências cadastradas no sistema no modelo dropdown";
     public static final String OPERATION_SENIORITY_FIND_ALL = "Retorna todas as senioridades cadastradas no sistema";
     public static final String OPERATION_SENIORITY_FIND_BY_ID = "Retorna uma senioridade cadastrada no sistema pelo id";
     public static final String OPERATION_CONTRIBUTOR_FIND_ALL = "Retorna todos os colaboradores cadastrados no sistema";

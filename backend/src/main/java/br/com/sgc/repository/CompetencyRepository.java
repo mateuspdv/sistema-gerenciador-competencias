@@ -2,11 +2,14 @@ package br.com.sgc.repository;
 
 import br.com.sgc.model.CompetencyModel;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.dto.DropdownCategoryDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface CompetencyRepository extends JpaRepository<CompetencyModel, Long> {
 
@@ -25,5 +28,11 @@ public interface CompetencyRepository extends JpaRepository<CompetencyModel, Lon
             " ContributorCompetencyModel CC " +
             " WHERE CC.competencyModel.id = :idCompetency ")
     Boolean haveRelationContributor(@Param("idCompetency") Long idCompetency);
+
+    @Query("select new br.com.sgc.service.dto.DropdownCategoryDto(C.id, " +
+            " C.name) " +
+            " FROM " +
+            " CompetencyModel C ")
+    List<DropdownCategoryDto> findAllDropdown();
 
 }

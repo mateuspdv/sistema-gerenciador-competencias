@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()" (onShow)="isEditing()" [resizable]="false" [style]="{width: '35vw', height: '40vh'}">
+<p-dialog [(visible)]="showForm" [modal]="true" (onHide)="close()" (onShow)="isEditing()" [resizable]="false" [style]="{width: '60vw', height: '70vh'}">
     <ng-template pTemplate="header">
         <b class="title">{{ getTitle() }}</b>
     </ng-template>
@@ -69,6 +69,71 @@
                             formControlName="idSeniority"
                             appendTo="body"
                             class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></p-dropdown>
+            </div>
+
+            <div class="field col-12" style="border-top: 2px solid #bbb;"></div>
+
+            <div class="field col-12" style="text-align: center">
+                <span style="font-weight: bold">Adicionar Competências</span>
+            </div>
+
+            <div class="field col-4">
+                <label for="competencies">Competências: </label>
+                <p-dropdown id="competencies"
+                            [options]="dropdownCompetencies"
+                            optionLabel="label"
+                            optionValue="value"
+                            placeholder="Selecione uma competência"
+                            appendTo="body"
+                            [(ngModel)]="idCompetencySelected"
+                            [ngModelOptions]="{standalone: true}"
+                            class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></p-dropdown>
+            </div>
+
+            <div class="field col-4">
+                <label for="levelCompetency">Nível: </label>
+                <p-dropdown id="levelCompetency"
+                            [options]="dropdownLevelCompetency"
+                            optionLabel="label"
+                            optionValue="value"
+                            placeholder="Selecione o nível"
+                            appendTo="body"
+                            [(ngModel)]="idLevelCompetencySelected"
+                            [ngModelOptions]="{standalone: true}"
+                            class="text-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></p-dropdown>
+            </div>
+
+            <div class="field col-4">
+                <button pButton
+                        type="button"
+                        label="Adicionar"
+                        class="p-button-raised p-button-rounded p-button-secondary"
+                        (click)="addCompetency()"></button>
+            </div>
+
+            <div class="field col-12">
+                <p-table [value]="competenciesSelected">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Competência</th>
+                            <th>Nível</th>
+                            <th>Excluir</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-competency>
+                        <tr>
+                            <td>{{ competency.nameCompetency }}</td>
+                            <td>{{ competency.nameLevelCompetency }}</td>
+                            <td>
+                                <button pButton
+                                        type="button"
+                                        label="Excluir"
+                                        class="p-button-raised p-button-rounded p-button-secondary"
+                                        (click)="excludeCompetency(competency)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </form>

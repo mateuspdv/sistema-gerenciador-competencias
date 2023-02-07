@@ -1,14 +1,19 @@
 package br.com.sgc.service;
 
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.dto.DropdownCategoryDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface CompetencyService {
 
     Page<CompetencyDto> findAll(Pageable pageable);
 
     Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query);
+
+    List<DropdownCategoryDto> findAllDropdown();
 
     CompetencyDto findById(Long idCompetency);
 

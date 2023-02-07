@@ -1,3 +1,4 @@
+import { ContributorCompetencyModel } from './contributor-competency.model';
 export class ContributorModel {
     id?: number;
     firstName?: string;
@@ -9,4 +10,5 @@ export class ContributorModel {
     admissionDate: Date = new Date();
     idSeniority?: number;
     nameSeniority?: string;
+    competencies: ContributorCompetencyModel[] = []
 }

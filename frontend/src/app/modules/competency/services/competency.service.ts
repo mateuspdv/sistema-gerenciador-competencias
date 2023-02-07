@@ -1,3 +1,4 @@
+import { DropdownModel } from './../../../shared/models/dropdown.model';
 import { CompetencyModel } from './../models/competency.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,6 +15,10 @@ export class CompetencyService {
 
   findAll(page: number): Observable<CompetencyModel[]> {
     return this.httpClient.get<CompetencyModel[]>(this.url + '?page=' + page);
+  }
+
+  findAllDropDown(): Observable<DropdownModel[]> {
+    return this.httpClient.get<DropdownModel[]>(this.url + `/competencias-dropdown`);
   }
 
   globalSearchFilter(query: string, page: number): Observable<CompetencyModel[]> {

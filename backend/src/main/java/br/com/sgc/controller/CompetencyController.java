@@ -2,6 +2,7 @@ package br.com.sgc.controller;
 
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.dto.DropdownCategoryDto;
 import br.com.sgc.util.MessageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/competencia")
@@ -35,6 +37,12 @@ public class CompetencyController {
     @ApiOperation(MessageUtil.OPERATION_COMPETENCY_GLOBAL_SEARCH_FILTER)
     public ResponseEntity<Page<CompetencyDto>> globalSearchFilter(@PageableDefault(size = 5) Pageable pageable, @PathVariable String query) {
         return ResponseEntity.status(HttpStatus.OK).body(competencyService.globalSearchFilter(pageable, query));
+    }
+
+    @GetMapping("/competencias-dropdown")
+    @ApiOperation(MessageUtil.OPERATION_COMPETENCY_FIND_ALL_DROPDOWN)
+    public ResponseEntity<List<DropdownCategoryDto>> findAllDropdown() {
+        return ResponseEntity.status(HttpStatus.OK).body(competencyService.findAllDropdown());
     }
 
     @GetMapping("/{idCompetency}")

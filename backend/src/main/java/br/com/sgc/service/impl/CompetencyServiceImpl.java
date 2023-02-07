@@ -4,6 +4,7 @@ import br.com.sgc.repository.CompetencyRepository;
 import br.com.sgc.service.CategoryService;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.dto.DropdownCategoryDto;
 import br.com.sgc.service.exception.BusinessException;
 import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.CompetencyMapper;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +34,10 @@ public class CompetencyServiceImpl implements CompetencyService {
 
     public Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query) {
         return competencyRepository.globalSearchFilter(pageable, query);
+    }
+
+    public List<DropdownCategoryDto> findAllDropdown() {
+        return competencyRepository.findAllDropdown();
     }
 
     public CompetencyDto findById(Long idCompetency) {
