@@ -119,6 +119,7 @@ export class ContributorFormComponent implements OnInit {
             return;
         }
         this.competenciesSelected.push(contributorCompetencyModel);
+        this.addMessage('success', 'Competência adicionada com sucesso!', 3000);
     }
 
     checkDropdownsHaveValues(): boolean {
