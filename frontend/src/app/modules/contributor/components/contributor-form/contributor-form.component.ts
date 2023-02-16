@@ -114,20 +114,36 @@ export class ContributorFormComponent implements OnInit {
     }
 
     checkCompetencyAlreadyAdded(contributorCompetencyModel: ContributorCompetencyModel): void {
-        if(this.competenciesSelected.filter(competency => competency.idCompetency === contributorCompetencyModel.idCompetency).length > 0) {
-            this.addMessage('error', 'Colaborador já leciona essa competência!', 3000);
+        if (this.competenciesSelected.filter(competency => competency.idCompetency === contributorCompetencyModel.idCompetency).length > 0) {
+            this.addMessage('error', 'Colaborador já possui essa competência!', 3000);
             return;
         }
         this.competenciesSelected.push(contributorCompetencyModel);
     }
 
+    checkDropdownsHaveValues(): boolean {
+        if (this.idCompetencySelected == null) {
+            this.addMessage('error', 'Selecione uma competência!', 3000);
+            return false;
+        }
+
+        if (this.idLevelCompetencySelected == null) {
+            this.addMessage('error', 'Selecione um nível para a competência!', 3000);
+            return false;
+        }
+
+        return true;
+    }
+
     addCompetency(): void {
-        let contributorCompetencyModel: ContributorCompetencyModel = new ContributorCompetencyModel();
-        contributorCompetencyModel.idCompetency = this.idCompetencySelected;
-        contributorCompetencyModel.nameCompetency = this.dropdownCompetencies.find(competency => competency.value === this.idCompetencySelected)?.label;
-        contributorCompetencyModel.idLevelCompetency = this.idLevelCompetencySelected;
-        contributorCompetencyModel.nameLevelCompetency = this.dropdownLevelCompetency.find(levelCompetency => levelCompetency.value === this.idLevelCompetencySelected)?.label;
-        this.checkCompetencyAlreadyAdded(contributorCompetencyModel);
+        if (this.checkDropdownsHaveValues()) {
+            let contributorCompetencyModel: ContributorCompetencyModel = new ContributorCompetencyModel();
+            contributorCompetencyModel.idCompetency = this.idCompetencySelected;
+            contributorCompetencyModel.nameCompetency = this.dropdownCompetencies.find(competency => competency.value === this.idCompetencySelected)?.label;
+            contributorCompetencyModel.idLevelCompetency = this.idLevelCompetencySelected;
+            contributorCompetencyModel.nameLevelCompetency = this.dropdownLevelCompetency.find(levelCompetency => levelCompetency.value === this.idLevelCompetencySelected)?.label;
+            this.checkCompetencyAlreadyAdded(contributorCompetencyModel);
+        }
     }
 
     excludeCompetency(contributorCompetencyModel: ContributorCompetencyModel) {
@@ -144,10 +160,17 @@ export class ContributorFormComponent implements OnInit {
         });
     }
 
+    resetSelectedCompetencies(): void {
+        this.idCompetencySelected = null;
+        this.idLevelCompetencySelected = null;
+        this.competenciesSelected = [];
+    }
+
     close(): void {
         this.showForm = false;
         this.editing = false;
         this.formGroup.reset();
+        this.resetSelectedCompetencies();
         this.closeForm.emit();
     }
 
