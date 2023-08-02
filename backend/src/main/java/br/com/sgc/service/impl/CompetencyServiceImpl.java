@@ -33,10 +33,6 @@ public class CompetencyServiceImpl implements CompetencyService {
         return competencyRepository.findAll(pageable).map(competencyMapper::toDto);
     }
 
-    public Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query) {
-        return competencyRepository.globalSearchFilter(pageable, query);
-    }
-
     public List<DropdownCategoryDto> findAllDropdown() {
         return competencyRepository.findAllDropdown();
     }

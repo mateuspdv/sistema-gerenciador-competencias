@@ -12,7 +12,7 @@
 
 <p-accordion (onClose)="cleanFilter()">
     <p-accordionTab header="Filtro">
-        <form [formGroup]="filterForm" (ngSubmit)="filterByColumns()">
+        <form [formGroup]="filterForm" (ngSubmit)="searchButton()">
             <div class="formgrid grid">
                 <div class="field col-2">
                     <label for="name">Nome: </label>
@@ -55,15 +55,6 @@
 </p-accordion>
 
 <p-table [columns]="cols" [value]="competencies">
-    <ng-template pTemplate="caption">
-        <div style="display: flex; justify-content: space-between;">
-            <span>Lista de competências cadastradas</span>
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" placeholder="Filtro Global" (keyup.enter)="search($event)">
-            </span>
-        </div>
-    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
@@ -104,7 +95,8 @@
 
 <p-toast></p-toast>
 
-<p-paginator [rowsPerPageOptions]="[5, 10, 15, 20]"
+<p-paginator #paginator
+             [rowsPerPageOptions]="[5, 10, 15, 20]"
              [totalRecords]="totalElements"
              (onPageChange)="paginate($event)"></p-paginator>
 

@@ -1,9 +1,10 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CompetencyModel } from './../../models/competency.model';
 import { CompetencyService } from './../../services/competency.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { CategoryService } from '../../services/category.service';
+import { Paginator } from 'primeng/paginator';
 
 @Component({
   selector: 'app-competency-list',
@@ -31,13 +32,13 @@ export class CompetencyListComponent implements OnInit {
 
   numberElementsPage: number = 0;
 
-  isSearch = false;
-
-  query: string = '';
+  searchByFilter: boolean = false;
 
   filterForm: FormGroup;
 
   dropdownCategories: SelectItem[] = [];
+
+  @ViewChild('paginator') paginator: Paginator;
 
   constructor(private messageService: MessageService,
               private competencyService: CompetencyService,
@@ -49,7 +50,7 @@ export class CompetencyListComponent implements OnInit {
     this.setColumns();
     this.buildFormFilter();
     this.findCategories();
-    this.findCompetencies(this.currentPage);
+    this.findCompetencies(5, this.currentPage);
   }
 
   buildFormFilter(): void {
@@ -78,8 +79,8 @@ export class CompetencyListComponent implements OnInit {
     });
   }
 
-  findCompetencies(page: number): void {
-    this.competencyService.findAll(page).subscribe({
+  findCompetencies(size:number, page: number): void {
+    this.competencyService.findAll(size, page).subscribe({
         next: (data: any) => {
             this.competencies = data['content'];
             this.totalElements = data['totalElements'];
@@ -102,19 +103,6 @@ export class CompetencyListComponent implements OnInit {
             this.addToast('error', 'Erro ao carregar categorias', error.message);
         }
     })
-  }
-
-  globalSearchFilter(query: string, page: number): void {
-    this.competencyService.globalSearchFilter(query, page).subscribe({
-        next: (data: any) => {
-            this.competencies = data['content'];
-            this.totalElements = data['totalElements'];
-            this.numberElementsPage = data['numberOfElements'];
-        },
-        error: (error) => {
-            this.addToast('error', 'Erro ao realizar busca por competências', error.message);
-        }
-    });
   }
 
   deleteCompetency(idCompetency: number): void {
@@ -147,11 +135,11 @@ export class CompetencyListComponent implements OnInit {
   }
 
   refreshCompetencies(): void {
-    if(this.action == 'create' && this.numberElementsPage == 5) {
-        this.findCompetencies(this.currentPage + 1);
+    if(this.action == 'create' && this.numberElementsPage == this.paginator.rows) {
+        this.findCompetencies(this.paginator.rows, this.currentPage + 1);
         return;
     }
-    this.findCompetencies(this.currentPage);
+    this.findCompetencies(this.paginator.rows, this.currentPage);
   }
 
   defineCompetencyToUpdate(competency: CompetencyModel): void {
@@ -166,25 +154,11 @@ export class CompetencyListComponent implements OnInit {
   }
 
   paginate(event: any) {
-    console.log(event);
-    this.currentPage = event.page;
-    if(this.isSearch) {
-        this.globalSearchFilter(this.query, this.currentPage);
+    if(this.searchByFilter) {
+        this.filterByColumns(this.paginator.rows, event.page);
         return;
     }
-    this.findCompetencies(this.currentPage);
-  }
-
-  search(event: any): void {
-    this.query = event.target.value;
-    this.currentPage = 0;
-    if(this.query == '' || this.query == undefined) {
-        this.isSearch = false;
-        this.findCompetencies(this.currentPage);
-        return;
-    }
-    this.isSearch = true;
-    this.globalSearchFilter(this.query, this.currentPage);
+    this.findCompetencies(this.paginator.rows, event.page);
   }
 
   cleanFilter() : void {
@@ -193,8 +167,8 @@ export class CompetencyListComponent implements OnInit {
     this.filterForm.get('idCategory').reset();
   }
 
-  filterByColumns(): void {
-    this.competencyService.columnsFilter(this.filterForm.value, 5, 0).subscribe({
+  filterByColumns(size: number, page: number): void {
+    this.competencyService.columnsFilter(this.filterForm.value, size, page).subscribe({
         next: (data: any) =>  {
             this.competencies = data['content'];
             this.totalElements = data['totalElements'];
@@ -204,6 +178,12 @@ export class CompetencyListComponent implements OnInit {
             this.addToast('error', 'Erro ao filtrar competências', error.message);
         }
     });
+  }
+
+  searchButton(): void {
+    this.currentPage = 0;
+    this.searchByFilter = true;
+    this.filterByColumns(this.paginator.rows, this.currentPage);
   }
 
 }

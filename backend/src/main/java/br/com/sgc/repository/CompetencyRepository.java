@@ -14,16 +14,6 @@ import java.util.List;
 
 public interface CompetencyRepository extends JpaRepository<CompetencyModel, Long> {
 
-    @Query("select new br.com.sgc.service.dto.CompetencyDto(c.id, " +
-            "c.name, " +
-            "c.description, " +
-            "c.categoryModel.id, " +
-            "c.categoryModel.name) from CompetencyModel c where lower(c.name) = lower(:query) or " +
-            "lower(c.description) = lower(:query) or " +
-            "lower(c.categoryModel.name) = lower(:query) " +
-            "order by c.id")
-    Page<CompetencyDto> globalSearchFilter(Pageable pageable, @Param("query") String query);
-
     @Query("SELECT COUNT(CC.competencyModel.id) > 0 " +
             " FROM " +
             " ContributorCompetencyModel CC " +

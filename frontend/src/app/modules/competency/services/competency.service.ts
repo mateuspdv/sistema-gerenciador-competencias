@@ -14,16 +14,13 @@ export class CompetencyService {
 
   url: string = 'http://localhost:8080/api/competencia';
 
-  findAll(page: number): Observable<CompetencyModel[]> {
-    return this.httpClient.get<CompetencyModel[]>(this.url + '?page=' + page);
+  findAll(size: number, page: number): Observable<CompetencyModel[]> {
+    const params = { page: page, size: size };
+    return this.httpClient.get<CompetencyModel[]>(this.url, { params });
   }
 
   findAllDropDown(): Observable<DropdownModel[]> {
     return this.httpClient.get<DropdownModel[]>(this.url + `/competencias-dropdown`);
-  }
-
-  globalSearchFilter(query: string, page: number): Observable<CompetencyModel[]> {
-    return this.httpClient.get<CompetencyModel[]>(this.url + '/filtro/' + query + '?page=' + page);
   }
 
   findById(idCompetency: number): Observable<CompetencyModel> {

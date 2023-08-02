@@ -12,8 +12,6 @@ public interface CompetencyService {
 
     Page<CompetencyDto> findAll(Pageable pageable);
 
-    Page<CompetencyDto> globalSearchFilter(Pageable pageable, String query);
-
     List<DropdownCategoryDto> findAllDropdown();
 
     CompetencyDto findById(Long idCompetency);
