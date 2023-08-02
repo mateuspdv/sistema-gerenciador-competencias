@@ -5,6 +5,7 @@ import br.com.sgc.service.CategoryService;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
 import br.com.sgc.service.dto.DropdownCategoryDto;
+import br.com.sgc.service.dto.filter.CompetencyFilterDto;
 import br.com.sgc.service.exception.BusinessException;
 import br.com.sgc.service.exception.EntityNotFoundException;
 import br.com.sgc.service.mapper.CompetencyMapper;
@@ -68,6 +69,10 @@ public class CompetencyServiceImpl implements CompetencyService {
             throw new BusinessException(MessageUtil.EXCEPTION_DELETE_COMPETENCY_LINK_CONTRIBUTOR);
         }
         competencyRepository.deleteById(idCompetency);
+    }
+
+    public Page<CompetencyDto> columnsFilter(Pageable pageable, CompetencyFilterDto filter){
+        return competencyRepository.columnsFilter(pageable, filter);
     }
 
 }

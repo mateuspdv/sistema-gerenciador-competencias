@@ -2,6 +2,7 @@ package br.com.sgc.service;
 
 import br.com.sgc.service.dto.CompetencyDto;
 import br.com.sgc.service.dto.DropdownCategoryDto;
+import br.com.sgc.service.dto.filter.CompetencyFilterDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -22,5 +23,7 @@ public interface CompetencyService {
     CompetencyDto update(CompetencyDto competencyDto);
 
     void deleteById(Long idCompetency);
+
+    Page<CompetencyDto> columnsFilter(Pageable pageable, CompetencyFilterDto filter);
 
 }

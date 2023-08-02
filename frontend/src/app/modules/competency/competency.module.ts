@@ -15,6 +15,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputTextModule} from 'primeng/inputtext';
 import {PaginatorModule} from 'primeng/paginator';
 import { FormAutoFocusDirective } from 'src/app/shared/directives/form-auto-focus.directive';
+import { AccordionModule } from 'primeng/accordion';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FormAutoFocusDirective } from 'src/app/shared/directives/form-auto-focu
     DropdownModule,
     InputTextModule,
     PaginatorModule,
-    FormAutoFocusDirective
+    FormAutoFocusDirective,
+    AccordionModule
   ]
 })
 export class CompetencyModule { }

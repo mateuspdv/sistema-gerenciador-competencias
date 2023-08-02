@@ -3,6 +3,7 @@ import { CompetencyModel } from './../models/competency.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompetencyFilterModel } from '../models/competency-filter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,11 @@ export class CompetencyService {
 
   deleteById(idCompetency: number): Observable<void> {
     return this.httpClient.delete<void>(this.url + '/' + idCompetency);
+  }
+
+  columnsFilter(filter: CompetencyFilterModel, size: number, page: number): Observable<CompetencyModel> {
+    const params = { page: page, size: size };
+    return this.httpClient.post<CompetencyModel>(this.url + '/filter', filter, { params });
   }
 
 }

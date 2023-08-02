@@ -3,6 +3,7 @@ package br.com.sgc.controller;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
 import br.com.sgc.service.dto.DropdownCategoryDto;
+import br.com.sgc.service.dto.filter.CompetencyFilterDto;
 import br.com.sgc.util.MessageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,6 +69,11 @@ public class CompetencyController {
     public ResponseEntity<Void> deleteById(@PathVariable Long idCompetency) {
         competencyService.deleteById(idCompetency);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<Page<CompetencyDto>> columnsFilter(Pageable pageable, @RequestBody CompetencyFilterDto filter) {
+        return ResponseEntity.ok(competencyService.columnsFilter(pageable, filter));
     }
 
 }

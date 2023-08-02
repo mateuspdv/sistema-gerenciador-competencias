@@ -35,7 +35,6 @@ export class CompetencyFormComponent implements OnInit {
   ngOnInit(): void {
     this.buildFormGrup();
     this.findCategories();
-    console.log(this.formGroup);
   }
 
   buildFormGrup(): void {
