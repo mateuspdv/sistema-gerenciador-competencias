@@ -1,0 +1,13 @@
+version: '2.2'
+
+services:
+
+  database:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      - POSTGRES_USER=sgc
+      - POSTGRES_PASSWORD=sgc
+      - POSTGRES_DB=sgc
+    ports:
+      - "5432:5432"

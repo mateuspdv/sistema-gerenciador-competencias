@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
+
+        <include file="db/changelog/files/20221029125505_create_table_category.xml"></include>
+        <include file="db/changelog/files/20221029140620_create_table_competency.xml"></include>
+        <include file="db/changelog/files/20221201225155_create_table_seniority.xml"></include>
+        <include file="db/changelog/files/20221224115405_create_table_contributor.xml"></include>
+        <include file="db/changelog/files/20230131103640_create_table_level_competency.xml"></include>
+        <include file="db/changelog/files/20230205193125_create_table_contributor_competency.xml"></include>
+
+</databaseChangeLog>
