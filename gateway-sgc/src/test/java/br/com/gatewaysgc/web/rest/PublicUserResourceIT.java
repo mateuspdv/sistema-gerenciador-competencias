@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 import br.com.gatewaysgc.IntegrationTest;
-import br.com.gatewaysgc.config.Constants;
 import br.com.gatewaysgc.domain.User;
 import br.com.gatewaysgc.repository.EntityManager;
 import br.com.gatewaysgc.repository.UserRepository;
@@ -18,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 
 /**
  * Integration tests for the {@link PublicUserResource} REST controller.

@@ -9,12 +9,10 @@ import br.com.gatewaysgc.config.Constants;
 import br.com.gatewaysgc.domain.User;
 import br.com.gatewaysgc.repository.AuthorityRepository;
 import br.com.gatewaysgc.repository.UserRepository;
-import br.com.gatewaysgc.repository.search.UserSearchRepository;
 import br.com.gatewaysgc.security.AuthoritiesConstants;
 import br.com.gatewaysgc.service.UserService;
 import br.com.gatewaysgc.service.dto.AdminUserDTO;
 import br.com.gatewaysgc.service.dto.PasswordChangeDTO;
-import br.com.gatewaysgc.service.dto.UserDTO;
 import br.com.gatewaysgc.web.rest.vm.KeyAndPasswordVM;
 import br.com.gatewaysgc.web.rest.vm.ManagedUserVM;
 import java.time.Instant;
@@ -28,7 +26,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 
 /**
  * Integration tests for the {@link AccountResource} REST controller.

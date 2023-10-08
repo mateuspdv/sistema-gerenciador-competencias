@@ -13,3 +13,7 @@ services:
     extends:
       file: ./jhipster-registry.yml
       service: jhipster-registry
+  redis:
+    extends:
+      file: ./redis.yml
+      service: redis

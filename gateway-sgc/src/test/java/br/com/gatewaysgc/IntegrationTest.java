@@ -1,6 +1,5 @@
 package br.com.gatewaysgc;
 
-import br.com.gatewaysgc.GatewaySgcApp;
 import br.com.gatewaysgc.config.AsyncSyncConfiguration;
 import br.com.gatewaysgc.config.EmbeddedElasticsearch;
 import br.com.gatewaysgc.config.EmbeddedSQL;
