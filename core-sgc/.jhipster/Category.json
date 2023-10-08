@@ -11,13 +11,6 @@
       "fieldValidateRules": ["required", "minlength", "maxlength"],
       "fieldValidateRulesMaxlength": "50",
       "fieldValidateRulesMinlength": "3"
-    },
-    {
-      "fieldName": "description",
-      "fieldType": "String",
-      "fieldValidateRules": ["required", "minlength", "maxlength"],
-      "fieldValidateRulesMaxlength": "50",
-      "fieldValidateRulesMinlength": "3"
     }
   ],
   "jpaMetamodelFiltering": false,

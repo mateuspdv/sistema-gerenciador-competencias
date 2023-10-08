@@ -15,6 +15,7 @@ public class CategoryDTO implements Serializable {
     @NotNull
     @Size(min = 3, max = 50)
     private String name;
+
     public Long getId() {
         return id;
     }

@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class CategoryResourceIT {
 
+    private static final Long DEFAULT_ID = 1L;
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -58,7 +59,7 @@ class CategoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Category createEntity(EntityManager em) {
-        Category category = new Category().name(DEFAULT_NAME);
+        Category category = new Category().id(DEFAULT_ID).name(DEFAULT_NAME);
         return category;
     }
 
@@ -69,7 +70,7 @@ class CategoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Category createUpdatedEntity(EntityManager em) {
-        Category category = new Category().name(UPDATED_NAME);
+        Category category = new Category().id(DEFAULT_ID).name(UPDATED_NAME);
         return category;
     }
 

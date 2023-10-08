@@ -3,17 +3,13 @@ package br.com.coresgc.web.rest;
 import br.com.coresgc.repository.CategoryRepository;
 import br.com.coresgc.service.CategoryService;
 import br.com.coresgc.service.dto.CategoryDTO;
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.ResponseUtil;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing {@link br.com.coresgc.domain.Category}.
