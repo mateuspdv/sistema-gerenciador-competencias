@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20231008150525-1" author="Mateus Padovan Pereira">
+        <createTable tableName="category">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20231008121830-2" author="Mateus Padovan Pereira">
+        <insert tableName="category">
+            <column name="id" value="1"></column>
+            <column name="name" value="Backend"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="2"></column>
+            <column name="name" value="Frontend"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="3"></column>
+            <column name="name" value="Banco"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="4"></column>
+            <column name="name" value="Arquitetura"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="5"></column>
+            <column name="name" value="Metodologia Ágil"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="6"></column>
+            <column name="name" value="Testes"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="7"></column>
+            <column name="name" value="Devops"></column>
+        </insert>
+
+        <insert tableName="category">
+            <column name="id" value="8"></column>
+            <column name="name" value="Liderança"></column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
