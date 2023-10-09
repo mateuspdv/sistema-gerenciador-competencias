@@ -11,11 +11,12 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface CompetencyMapper extends EntityMapper<CompetencyDTO, Competency> {
-    @Mapping(target = "category", source = "category", qualifiedByName = "categoryId")
+
     CompetencyDTO toDto(Competency s);
 
     @Named("categoryId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     CategoryDTO toDtoCategoryId(Category category);
+
 }

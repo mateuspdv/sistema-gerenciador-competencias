@@ -5,13 +5,15 @@ import br.com.coresgc.repository.CompetencyRepository;
 import br.com.coresgc.service.CompetencyService;
 import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.service.mapper.CompetencyMapper;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing {@link Competency}.
@@ -35,6 +37,8 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDTO save(CompetencyDTO competencyDTO) {
         log.debug("Request to save Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
+        competency.setCreationDate(LocalDate.now());
+        competency.setLastUpdateDate(LocalDate.now());
         competency = competencyRepository.save(competency);
         return competencyMapper.toDto(competency);
     }
@@ -43,6 +47,7 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDTO update(CompetencyDTO competencyDTO) {
         log.debug("Request to update Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
+        competency.lastUpdateDate(LocalDate.now());
         competency = competencyRepository.save(competency);
         return competencyMapper.toDto(competency);
     }
@@ -81,4 +86,5 @@ public class CompetencyServiceImpl implements CompetencyService {
         log.debug("Request to delete Competency : {}", id);
         competencyRepository.deleteById(id);
     }
+
 }

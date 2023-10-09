@@ -21,10 +21,8 @@ public class CompetencyDTO implements Serializable {
     @Size(min = 3, max = 50)
     private String description;
 
-    @NotNull
     private LocalDate creationDate;
 
-    @NotNull
     private LocalDate lastUpdateDate;
 
     private CategoryDTO category;

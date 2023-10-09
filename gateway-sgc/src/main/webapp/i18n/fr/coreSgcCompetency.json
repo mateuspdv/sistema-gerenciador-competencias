@@ -1,0 +1,32 @@
+{
+  "gatewaySgcApp": {
+    "coreSgcCompetency": {
+      "home": {
+        "title": "Competencies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Competency",
+        "createOrEditLabel": "Créer ou éditer un Competency",
+        "notFound": "Aucun Competency trouvé"
+      },
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Competency {{ id }} ?"
+      },
+      "detail": {
+        "title": "Competency"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "creationDate": "Creation Date",
+      "lastUpdateDate": "Last Update Date",
+      "category": "Category"
+    }
+  },
+  "coreSgcApp": {
+    "coreSgcCompetency": {
+      "created": "Un nouveau Competency a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Competency avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Competency avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}

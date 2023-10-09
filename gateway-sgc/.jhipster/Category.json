@@ -1,0 +1,26 @@
+{
+  "changelogDate": "20231008150525",
+  "clientRootFolder": "core-sgc",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "entityTableName": "category",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "core-sgc",
+  "microservicePath": "../core-sgc",
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": true,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": true
+}

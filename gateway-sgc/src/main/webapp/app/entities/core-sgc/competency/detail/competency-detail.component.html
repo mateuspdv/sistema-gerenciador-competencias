@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="competency">
+      <h2 data-cy="competencyDetailsHeading"><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.detail.title">Competency</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ competency.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.name">Name</span></dt>
+        <dd>
+          <span>{{ competency.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.description">Description</span></dt>
+        <dd>
+          <span>{{ competency.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ competency.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.lastUpdateDate">Last Update Date</span></dt>
+        <dd>
+          <span>{{ competency.lastUpdateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcCompetency.category">Category</span></dt>
+        <dd>
+          <div *ngIf="competency.category">
+            <a [routerLink]="['/category', competency.category.name, 'view']">{{ competency.category.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/competency', competency.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

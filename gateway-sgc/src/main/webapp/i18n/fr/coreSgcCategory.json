@@ -1,0 +1,16 @@
+{
+  "gatewaySgcApp": {
+    "coreSgcCategory": {
+      "home": {
+        "title": "Categories",
+        "refreshListLabel": "Actualiser la liste",
+        "notFound": "Aucun Category trouvé"
+      },
+      "detail": {
+        "title": "Category"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}
