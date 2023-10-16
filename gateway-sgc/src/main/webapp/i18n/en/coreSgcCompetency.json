@@ -9,7 +9,7 @@
         "notFound": "No Competencies found"
       },
       "delete": {
-        "question": "Are you sure you want to delete Competency {{ id }}?"
+        "question": "Are you sure you want to delete Competency {{ name }}?"
       },
       "detail": {
         "title": "Competency"
