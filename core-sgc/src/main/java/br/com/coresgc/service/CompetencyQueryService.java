@@ -1,13 +1,14 @@
 package br.com.coresgc.service;
 
-import br.com.coresgc.domain.*; // for static metamodels
+import br.com.coresgc.domain.Category_;
 import br.com.coresgc.domain.Competency;
+import br.com.coresgc.domain.Competency_;
 import br.com.coresgc.repository.CompetencyRepository;
 import br.com.coresgc.service.criteria.CompetencyCriteria;
 import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.service.mapper.CompetencyMapper;
 import jakarta.persistence.criteria.JoinType;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.jhipster.service.QueryService;
 
+import java.util.List;
+
 /**
  * Service for executing complex queries for {@link Competency} entities in the database.
  * The main input is a {@link CompetencyCriteria} which gets converted to {@link Specification},
@@ -24,6 +27,7 @@ import tech.jhipster.service.QueryService;
  * It returns a {@link List} of {@link CompetencyDTO} or a {@link Page} of {@link CompetencyDTO} which fulfills the criteria.
  */
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class CompetencyQueryService extends QueryService<Competency> {
 
@@ -33,13 +37,9 @@ public class CompetencyQueryService extends QueryService<Competency> {
 
     private final CompetencyMapper competencyMapper;
 
-    public CompetencyQueryService(CompetencyRepository competencyRepository, CompetencyMapper competencyMapper) {
-        this.competencyRepository = competencyRepository;
-        this.competencyMapper = competencyMapper;
-    }
-
     /**
      * Return a {@link List} of {@link CompetencyDTO} which matches the criteria from the database.
+     *
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the matching entities.
      */
@@ -52,8 +52,9 @@ public class CompetencyQueryService extends QueryService<Competency> {
 
     /**
      * Return a {@link Page} of {@link CompetencyDTO} which matches the criteria from the database.
+     *
      * @param criteria The object which holds all the filters, which the entities should match.
-     * @param page The page, which should be returned.
+     * @param page     The page, which should be returned.
      * @return the matching entities.
      */
     @Transactional(readOnly = true)
@@ -65,6 +66,7 @@ public class CompetencyQueryService extends QueryService<Competency> {
 
     /**
      * Return the number of matching entities in the database.
+     *
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the number of matching entities.
      */
@@ -77,6 +79,7 @@ public class CompetencyQueryService extends QueryService<Competency> {
 
     /**
      * Function to convert {@link CompetencyCriteria} to a {@link Specification}
+     *
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the matching {@link Specification} of the entity.
      */
@@ -114,4 +117,5 @@ public class CompetencyQueryService extends QueryService<Competency> {
         }
         return specification;
     }
+
 }

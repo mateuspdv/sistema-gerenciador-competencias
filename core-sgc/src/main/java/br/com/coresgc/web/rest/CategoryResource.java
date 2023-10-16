@@ -3,18 +3,24 @@ package br.com.coresgc.web.rest;
 import br.com.coresgc.repository.CategoryRepository;
 import br.com.coresgc.service.CategoryService;
 import br.com.coresgc.service.dto.CategoryDTO;
-import java.util.List;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.jhipster.web.util.ResponseUtil;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing {@link br.com.coresgc.domain.Category}.
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class CategoryResource {
 
@@ -23,11 +29,6 @@ public class CategoryResource {
     private final CategoryService categoryService;
 
     private final CategoryRepository categoryRepository;
-
-    public CategoryResource(CategoryService categoryService, CategoryRepository categoryRepository) {
-        this.categoryService = categoryService;
-        this.categoryRepository = categoryRepository;
-    }
 
     /**
      * {@code GET  /categories} : get all the categories.
@@ -52,4 +53,5 @@ public class CategoryResource {
         Optional<CategoryDTO> categoryDTO = categoryService.findOne(id);
         return ResponseUtil.wrapOrNotFound(categoryDTO);
     }
+
 }

@@ -8,11 +8,7 @@ import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,16 +16,31 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 /**
  * REST controller for managing {@link br.com.coresgc.domain.Competency}.
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class CompetencyResource {
 
@@ -45,16 +56,6 @@ public class CompetencyResource {
     private final CompetencyRepository competencyRepository;
 
     private final CompetencyQueryService competencyQueryService;
-
-    public CompetencyResource(
-        CompetencyService competencyService,
-        CompetencyRepository competencyRepository,
-        CompetencyQueryService competencyQueryService
-    ) {
-        this.competencyService = competencyService;
-        this.competencyRepository = competencyRepository;
-        this.competencyQueryService = competencyQueryService;
-    }
 
     /**
      * {@code POST  /competencies} : Create a new competency.
@@ -79,7 +80,7 @@ public class CompetencyResource {
     /**
      * {@code PUT  /competencies/:id} : Updates an existing competency.
      *
-     * @param id the id of the competencyDTO to save.
+     * @param id            the id of the competencyDTO to save.
      * @param competencyDTO the competencyDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated competencyDTO,
      * or with status {@code 400 (Bad Request)} if the competencyDTO is not valid,
@@ -113,7 +114,7 @@ public class CompetencyResource {
     /**
      * {@code PATCH  /competencies/:id} : Partial updates given fields of an existing competency, field will ignore if it is null
      *
-     * @param id the id of the competencyDTO to save.
+     * @param id            the id of the competencyDTO to save.
      * @param competencyDTO the competencyDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated competencyDTO,
      * or with status {@code 400 (Bad Request)} if the competencyDTO is not valid,
@@ -121,7 +122,7 @@ public class CompetencyResource {
      * or with status {@code 500 (Internal Server Error)} if the competencyDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/competencies/{id}", consumes = { "application/json", "application/merge-patch+json" })
+    @PatchMapping(value = "/competencies/{id}", consumes = {"application/json", "application/merge-patch+json"})
     public ResponseEntity<CompetencyDTO> partialUpdateCompetency(
         @PathVariable(value = "id", required = false) final Long id,
         @NotNull @RequestBody CompetencyDTO competencyDTO
@@ -205,4 +206,5 @@ public class CompetencyResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
 }

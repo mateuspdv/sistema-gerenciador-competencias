@@ -5,6 +5,7 @@ import br.com.coresgc.repository.CompetencyRepository;
 import br.com.coresgc.service.CompetencyService;
 import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.service.mapper.CompetencyMapper;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import java.util.Optional;
  * Service Implementation for managing {@link Competency}.
  */
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class CompetencyServiceImpl implements CompetencyService {
 
@@ -27,11 +29,6 @@ public class CompetencyServiceImpl implements CompetencyService {
     private final CompetencyRepository competencyRepository;
 
     private final CompetencyMapper competencyMapper;
-
-    public CompetencyServiceImpl(CompetencyRepository competencyRepository, CompetencyMapper competencyMapper) {
-        this.competencyRepository = competencyRepository;
-        this.competencyMapper = competencyMapper;
-    }
 
     @Override
     public CompetencyDTO save(CompetencyDTO competencyDTO) {
@@ -47,7 +44,7 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDTO update(CompetencyDTO competencyDTO) {
         log.debug("Request to update Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
-        competency.lastUpdateDate(LocalDate.now());
+        competency.setLastUpdateDate(LocalDate.now());
         competency = competencyRepository.save(competency);
         return competencyMapper.toDto(competency);
     }

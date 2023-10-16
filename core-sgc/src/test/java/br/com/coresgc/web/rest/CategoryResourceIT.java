@@ -59,7 +59,7 @@ class CategoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Category createEntity(EntityManager em) {
-        Category category = new Category().id(DEFAULT_ID).name(DEFAULT_NAME);
+        Category category = Category.builder().id(DEFAULT_ID).name(DEFAULT_NAME).build();
         return category;
     }
 
@@ -70,7 +70,7 @@ class CategoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Category createUpdatedEntity(EntityManager em) {
-        Category category = new Category().id(DEFAULT_ID).name(UPDATED_NAME);
+        Category category = Category.builder().id(DEFAULT_ID).name(UPDATED_NAME).build();
         return category;
     }
 

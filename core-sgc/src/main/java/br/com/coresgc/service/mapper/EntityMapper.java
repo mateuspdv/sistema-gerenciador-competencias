@@ -1,10 +1,11 @@
 package br.com.coresgc.service.mapper;
 
-import java.util.List;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+
+import java.util.List;
 
 /**
  * Contract for a generic dto to entity mapper.
@@ -25,4 +26,5 @@ public interface EntityMapper<D, E> {
     @Named("partialUpdate")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void partialUpdate(@MappingTarget E entity, D dto);
+
 }

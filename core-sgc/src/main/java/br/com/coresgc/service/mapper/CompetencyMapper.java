@@ -4,7 +4,10 @@ import br.com.coresgc.domain.Category;
 import br.com.coresgc.domain.Competency;
 import br.com.coresgc.service.dto.CategoryDTO;
 import br.com.coresgc.service.dto.CompetencyDTO;
-import org.mapstruct.*;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 /**
  * Mapper for the entity {@link Competency} and its DTO {@link CompetencyDTO}.

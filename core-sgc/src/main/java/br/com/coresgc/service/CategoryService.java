@@ -1,6 +1,7 @@
 package br.com.coresgc.service;
 
 import br.com.coresgc.service.dto.CategoryDTO;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -53,4 +54,5 @@ public interface CategoryService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
 }

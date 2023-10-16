@@ -5,19 +5,22 @@ import br.com.coresgc.repository.CategoryRepository;
 import br.com.coresgc.service.CategoryService;
 import br.com.coresgc.service.dto.CategoryDTO;
 import br.com.coresgc.service.mapper.CategoryMapper;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * Service Implementation for managing {@link Category}.
  */
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
@@ -26,11 +29,6 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     private final CategoryMapper categoryMapper;
-
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
-        this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
-    }
 
     @Override
     public CategoryDTO save(CategoryDTO categoryDTO) {
@@ -82,4 +80,5 @@ public class CategoryServiceImpl implements CategoryService {
         log.debug("Request to delete Category : {}", id);
         categoryRepository.deleteById(id);
     }
+
 }

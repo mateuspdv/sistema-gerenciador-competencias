@@ -75,11 +75,13 @@ class CompetencyResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Competency createEntity(EntityManager em) {
-        Competency competency = new Competency()
+        Competency competency = Competency
+            .builder()
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
             .creationDate(DEFAULT_CREATION_DATE)
-            .lastUpdateDate(DEFAULT_LAST_UPDATE_DATE);
+            .lastUpdateDate(DEFAULT_LAST_UPDATE_DATE)
+            .build();
         // Add required entity
         Category category;
         if (TestUtil.findAll(em, Category.class).isEmpty()) {
@@ -100,11 +102,13 @@ class CompetencyResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Competency createUpdatedEntity(EntityManager em) {
-        Competency competency = new Competency()
+        Competency competency = Competency
+            .builder()
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
             .creationDate(UPDATED_CREATION_DATE)
-            .lastUpdateDate(UPDATED_LAST_UPDATE_DATE);
+            .lastUpdateDate(UPDATED_LAST_UPDATE_DATE)
+            .build();
         // Add required entity
         Category category;
         if (TestUtil.findAll(em, Category.class).isEmpty()) {
@@ -682,11 +686,10 @@ class CompetencyResourceIT {
         Competency updatedCompetency = competencyRepository.findById(competency.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedCompetency are not directly saved in db
         em.detach(updatedCompetency);
-        updatedCompetency
-            .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION)
-            .creationDate(UPDATED_CREATION_DATE)
-            .lastUpdateDate(UPDATED_LAST_UPDATE_DATE);
+        updatedCompetency.setName(UPDATED_NAME);
+        updatedCompetency.setDescription(UPDATED_DESCRIPTION);
+        updatedCompetency.setCreationDate(UPDATED_CREATION_DATE);
+        updatedCompetency.setLastUpdateDate(UPDATED_LAST_UPDATE_DATE);
         CompetencyDTO competencyDTO = competencyMapper.toDto(updatedCompetency);
 
         restCompetencyMockMvc
@@ -784,7 +787,8 @@ class CompetencyResourceIT {
         Competency partialUpdatedCompetency = new Competency();
         partialUpdatedCompetency.setId(competency.getId());
 
-        partialUpdatedCompetency.name(UPDATED_NAME).lastUpdateDate(UPDATED_LAST_UPDATE_DATE);
+        partialUpdatedCompetency.setName(UPDATED_NAME);
+        partialUpdatedCompetency.setLastUpdateDate(UPDATED_LAST_UPDATE_DATE);
 
         restCompetencyMockMvc
             .perform(
@@ -816,11 +820,10 @@ class CompetencyResourceIT {
         Competency partialUpdatedCompetency = new Competency();
         partialUpdatedCompetency.setId(competency.getId());
 
-        partialUpdatedCompetency
-            .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION)
-            .creationDate(UPDATED_CREATION_DATE)
-            .lastUpdateDate(UPDATED_LAST_UPDATE_DATE);
+        partialUpdatedCompetency.setName(UPDATED_NAME);
+        partialUpdatedCompetency.setDescription(UPDATED_DESCRIPTION);
+        partialUpdatedCompetency.setCreationDate(UPDATED_CREATION_DATE);
+        partialUpdatedCompetency.setLastUpdateDate(UPDATED_LAST_UPDATE_DATE);
 
         restCompetencyMockMvc
             .perform(
