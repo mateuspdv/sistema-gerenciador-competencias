@@ -55,6 +55,7 @@ export class CompetencyUpdateComponent implements OnInit {
     this.isSaving = true;
     const competency = this.competencyFormService.getCompetency(this.editForm);
     if (competency.id !== null) {
+      competency.creationDate = this.competency?.creationDate;
       this.subscribeToSaveResponse(this.competencyService.update(competency));
     } else {
       this.subscribeToSaveResponse(this.competencyService.create(competency));
