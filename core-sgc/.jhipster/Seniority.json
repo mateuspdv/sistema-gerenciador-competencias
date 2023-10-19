@@ -1,0 +1,24 @@
+{
+  "changelogDate": "20231019143227",
+  "clientRootFolder": "core-sgc",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "entityTableName": "seniority",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "3"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "core-sgc",
+  "name": "Seniority",
+  "pagination": "no",
+  "readOnly": true,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

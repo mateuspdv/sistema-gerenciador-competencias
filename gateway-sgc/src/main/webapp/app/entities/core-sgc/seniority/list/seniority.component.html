@@ -1,0 +1,63 @@
+<div>
+  <h2 id="page-heading" data-cy="SeniorityHeading">
+    <span jhiTranslate="gatewaySgcApp.coreSgcSeniority.home.title">Seniorities</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gatewaySgcApp.coreSgcSeniority.home.refreshListLabel">Atualizar lista</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="seniorities?.length === 0">
+    <span jhiTranslate="gatewaySgcApp.coreSgcSeniority.home.notFound">Nenhum Seniority encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="seniorities && seniorities.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="gatewaySgcApp.coreSgcSeniority.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let seniority of seniorities; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/seniority', seniority.id, 'view']">{{ seniority.id }}</a>
+          </td>
+          <td>{{ seniority.description }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/seniority', seniority.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

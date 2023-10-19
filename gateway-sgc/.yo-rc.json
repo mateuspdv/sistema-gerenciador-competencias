@@ -17,7 +17,7 @@
     "enableHibernateCache": false,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
-    "entities": ["Category", "Competency"],
+    "entities": ["Category", "Competency", "Seniority"],
     "entitySuffix": "",
     "gradleEnterpriseHost": null,
     "jhiPrefix": "jhi",

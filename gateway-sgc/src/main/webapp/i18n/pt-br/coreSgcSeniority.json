@@ -1,0 +1,16 @@
+{
+  "gatewaySgcApp": {
+    "coreSgcSeniority": {
+      "home": {
+        "title": "Seniorities",
+        "refreshListLabel": "Atualizar lista",
+        "notFound": "Nenhum Seniority encontrado"
+      },
+      "detail": {
+        "title": "Seniority"
+      },
+      "id": "ID",
+      "description": "Description"
+    }
+  }
+}
