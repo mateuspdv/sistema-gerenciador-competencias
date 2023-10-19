@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231008135520-1" author="Mateus Padovan Pereira">
+        <modifyDataType tableName="competency"
+                        columnName="creation_date"
+                        newDataType="${datetimeType}"></modifyDataType>
+
+        <modifyDataType tableName="competency"
+                        columnName="last_update_date"
+                        newDataType="${datetimeType}"></modifyDataType>
+    </changeSet>
+
+</databaseChangeLog>

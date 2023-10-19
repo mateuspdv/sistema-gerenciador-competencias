@@ -27,9 +27,9 @@ public class CompetencyCriteria implements Serializable, Criteria {
 
     private StringFilter description;
 
-    private LocalDateFilter creationDate;
+    private ZonedDateTimeFilter creationDate;
 
-    private LocalDateFilter lastUpdateDate;
+    private ZonedDateTimeFilter lastUpdateDate;
 
     private LongFilter categoryId;
 
@@ -97,33 +97,33 @@ public class CompetencyCriteria implements Serializable, Criteria {
         this.description = description;
     }
 
-    public LocalDateFilter getCreationDate() {
+    public ZonedDateTimeFilter getCreationDate() {
         return creationDate;
     }
 
-    public LocalDateFilter creationDate() {
+    public ZonedDateTimeFilter creationDate() {
         if (creationDate == null) {
-            creationDate = new LocalDateFilter();
+            creationDate = new ZonedDateTimeFilter();
         }
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateFilter creationDate) {
+    public void setCreationDate(ZonedDateTimeFilter creationDate) {
         this.creationDate = creationDate;
     }
 
-    public LocalDateFilter getLastUpdateDate() {
+    public ZonedDateTimeFilter getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public LocalDateFilter lastUpdateDate() {
+    public ZonedDateTimeFilter lastUpdateDate() {
         if (lastUpdateDate == null) {
-            lastUpdateDate = new LocalDateFilter();
+            lastUpdateDate = new ZonedDateTimeFilter();
         }
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(LocalDateFilter lastUpdateDate) {
+    public void setLastUpdateDate(ZonedDateTimeFilter lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 

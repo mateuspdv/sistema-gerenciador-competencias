@@ -1,10 +1,5 @@
 package br.com.coresgc.web.rest;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import br.com.coresgc.IntegrationTest;
 import br.com.coresgc.domain.Category;
 import br.com.coresgc.domain.Competency;
@@ -12,11 +7,6 @@ import br.com.coresgc.repository.CompetencyRepository;
 import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.service.mapper.CompetencyMapper;
 import jakarta.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +15,23 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Integration tests for the {@link CompetencyResource} REST controller.
@@ -40,13 +47,13 @@ class CompetencyResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_CREATION_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_CREATION_DATE = LocalDate.now(ZoneId.systemDefault());
-    private static final LocalDate SMALLER_CREATION_DATE = LocalDate.ofEpochDay(-1L);
+    private static final ZonedDateTime DEFAULT_CREATION_DATE = ZonedDateTime.now(ZoneId.systemDefault());
+    private static final ZonedDateTime UPDATED_CREATION_DATE = ZonedDateTime.now(ZoneId.systemDefault());
+    private static final ZonedDateTime SMALLER_CREATION_DATE = ZonedDateTime.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_LAST_UPDATE_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_LAST_UPDATE_DATE = LocalDate.now(ZoneId.systemDefault());
-    private static final LocalDate SMALLER_LAST_UPDATE_DATE = LocalDate.ofEpochDay(-1L);
+    private static final ZonedDateTime DEFAULT_LAST_UPDATE_DATE = ZonedDateTime.now(ZoneId.systemDefault());
+    private static final ZonedDateTime UPDATED_LAST_UPDATE_DATE = ZonedDateTime.now(ZoneId.systemDefault());
+    private static final ZonedDateTime SMALLER_LAST_UPDATE_DATE = ZonedDateTime.now(ZoneId.systemDefault());
 
     private static final String ENTITY_API_URL = "/api/competencies";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -70,7 +77,7 @@ class CompetencyResourceIT {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -97,7 +104,7 @@ class CompetencyResourceIT {
 
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */

@@ -13,7 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 /**
@@ -34,8 +35,8 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDTO save(CompetencyDTO competencyDTO) {
         log.debug("Request to save Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
-        competency.setCreationDate(LocalDate.now());
-        competency.setLastUpdateDate(LocalDate.now());
+        competency.setCreationDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
+        competency.setLastUpdateDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
         competency = competencyRepository.save(competency);
         return competencyMapper.toDto(competency);
     }
@@ -44,7 +45,8 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDTO update(CompetencyDTO competencyDTO) {
         log.debug("Request to update Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
-        competency.setLastUpdateDate(LocalDate.now());
+        competency.setCreationDate(competencyRepository.findCreationDateById(competency.getId()));
+        competency.setLastUpdateDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
         competency = competencyRepository.save(competency);
         return competencyMapper.toDto(competency);
     }

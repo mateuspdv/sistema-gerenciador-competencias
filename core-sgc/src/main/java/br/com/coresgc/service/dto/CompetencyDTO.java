@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  * A DTO for the {@link br.com.coresgc.domain.Competency} entity.
@@ -30,9 +30,9 @@ public class CompetencyDTO implements Serializable {
     @Size(min = 3, max = 50)
     private String description;
 
-    private LocalDate creationDate;
+    private ZonedDateTime creationDate;
 
-    private LocalDate lastUpdateDate;
+    private ZonedDateTime lastUpdateDate;
 
     private CategoryDTO category;
 

@@ -72,8 +72,8 @@
         <tr *ngFor="let competency of competencies; trackBy: trackId" data-cy="entityTable">
           <td>{{ competency.name }}</td>
           <td>{{ competency.description }}</td>
-          <td>{{ competency.creationDate | formatMediumDate }}</td>
-          <td>{{ competency.lastUpdateDate | formatMediumDate }}</td>
+          <td>{{ competency.creationDate | formatMediumDatetime }}</td>
+          <td>{{ competency.lastUpdateDate | formatMediumDatetime }}</td>
           <td>
             <div *ngIf="competency.category">
               <a [routerLink]="['/category', competency.category.name, 'view']">{{ competency.category.name }}</a>

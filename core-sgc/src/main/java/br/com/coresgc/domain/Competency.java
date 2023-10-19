@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  * A Competency.
@@ -53,11 +53,11 @@ public class Competency implements Serializable {
 
     @NotNull
     @Column(name = "creation_date", nullable = false)
-    private LocalDate creationDate;
+    private ZonedDateTime creationDate;
 
     @NotNull
     @Column(name = "last_update_date", nullable = false)
-    private LocalDate lastUpdateDate;
+    private ZonedDateTime lastUpdateDate;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_category")
