@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20231023123430-1" author="Mateus Padovan Pereira">
+        <createTable tableName="skill">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_skill_description" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20231023174958-2" author="Mateus Padovan Pereira">
+        <insert tableName="skill">
+            <column name="id" value="1"></column>
+            <column name="description" value="Conhece"></column>
+        </insert>
+
+        <insert tableName="skill">
+            <column name="id" value="2"></column>
+            <column name="description" value="Sabe aplicar"></column>
+        </insert>
+
+        <insert tableName="skill">
+            <column name="id" value="3"></column>
+            <column name="description" value="Sabe ensinar"></column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,13 +1,13 @@
 {
   "gatewaySgcApp": {
-    "coreSgcSeniority": {
+    "coreSgcSkill": {
       "home": {
-        "title": "Senioridades",
+        "title": "Habilidades",
         "refreshListLabel": "Atualizar lista",
-        "notFound": "Nenhuma senioridade encontrada"
+        "notFound": "Nenhuma habilidade encontrada"
       },
       "detail": {
-        "title": "Senioridade"
+        "title": "Habilidade"
       },
       "id": "ID",
       "description": "Descrição"

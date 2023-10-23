@@ -10,6 +10,7 @@
         "coreSgcCompetency": "Competency",
         "coreSgcCategory": "Category",
         "coreSgcSeniority": "Seniority",
+        "coreSgcSkill": "Skill",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

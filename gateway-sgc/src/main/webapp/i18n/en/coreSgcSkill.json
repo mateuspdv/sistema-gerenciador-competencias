@@ -1,0 +1,16 @@
+{
+  "gatewaySgcApp": {
+    "coreSgcSkill": {
+      "home": {
+        "title": "Skills",
+        "refreshListLabel": "Refresh list",
+        "notFound": "No Skills found"
+      },
+      "detail": {
+        "title": "Skill"
+      },
+      "id": "ID",
+      "description": "Description"
+    }
+  }
+}
