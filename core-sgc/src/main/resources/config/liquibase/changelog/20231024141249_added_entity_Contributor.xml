@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20231024141249-1" author="Mateus Padovan Pereira">
+        <createTable tableName="contributor">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="cpf" type="varchar(11)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_contributor_cpf" />
+            </column>
+
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_contributor_email" />
+            </column>
+
+            <column name="photo" type="${blobType}">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="photo_content_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="admission_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="creation_date" type="${datetimeType}">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_update_date" type="${datetimeType}">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="id_seniority" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <dropDefaultValue tableName="contributor" columnName="creation_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="contributor" columnName="last_update_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20231024141249-2" author="Mateus Padovan Pereira">
+        <createTable tableName="relationship_contributor_competency">
+            <column name="id_competency" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="id_contributor" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="id_contributor, id_competency" tableName="relationship_contributor_competency"/>
+    </changeSet>
+
+</databaseChangeLog>

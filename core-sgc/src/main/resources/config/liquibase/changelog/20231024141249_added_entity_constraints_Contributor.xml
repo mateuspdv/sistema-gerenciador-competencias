@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231024141249-2" author="Mateus Padovan Pereira">
+        <addForeignKeyConstraint baseColumnNames="id_seniority"
+                                 baseTableName="contributor"
+                                 constraintName="fk_contributor_id_seniority"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seniority"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_contributor"
+                                 baseTableName="relationship_contributor_competency"
+                                 constraintName="fk_relationship_contributor_competency_id_contributor"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contributor"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_competency"
+                                 baseTableName="relationship_contributor_competency"
+                                 constraintName="fk_relationship_contributor_competency_id_competency"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competency"/>
+    </changeSet>
+
+</databaseChangeLog>

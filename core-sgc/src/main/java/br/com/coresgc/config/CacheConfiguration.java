@@ -71,6 +71,11 @@ public class CacheConfiguration {
         return cm -> {
             createCache(cm, br.com.coresgc.domain.Category.class.getName(), jcacheConfiguration);
             createCache(cm, br.com.coresgc.domain.Competency.class.getName(), jcacheConfiguration);
+            createCache(cm, br.com.coresgc.domain.Competency.class.getName() + ".contributors", jcacheConfiguration);
+            createCache(cm, br.com.coresgc.domain.Seniority.class.getName(), jcacheConfiguration);
+            createCache(cm, br.com.coresgc.domain.Skill.class.getName(), jcacheConfiguration);
+            createCache(cm, br.com.coresgc.domain.Contributor.class.getName(), jcacheConfiguration);
+            createCache(cm, br.com.coresgc.domain.Contributor.class.getName() + ".competences", jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }
