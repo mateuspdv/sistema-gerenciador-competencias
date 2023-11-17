@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contributor">
+      <h2 data-cy="contributorDetailsHeading"><span jhiTranslate="gatewaySgcApp.coreSgcContributor.detail.title">Contributor</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ contributor.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.name">Name</span></dt>
+        <dd>
+          <span>{{ contributor.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ contributor.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.cpf">Cpf</span></dt>
+        <dd>
+          <span>{{ contributor.cpf }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.email">Email</span></dt>
+        <dd>
+          <span>{{ contributor.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="contributor.photo">
+            <a (click)="openFile(contributor.photo, contributor.photoContentType)">
+              <img
+                [src]="'data:' + contributor.photoContentType + ';base64,' + contributor.photo"
+                style="max-width: 100%"
+                alt="contributor image"
+              />
+            </a>
+            {{ contributor.photoContentType }}, {{ byteSize(contributor.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.birthDate">Birth Date</span></dt>
+        <dd>
+          <span>{{ contributor.birthDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.admissionDate">Admission Date</span></dt>
+        <dd>
+          <span>{{ contributor.admissionDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ contributor.creationDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.lastUpdateDate">Last Update Date</span></dt>
+        <dd>
+          <span>{{ contributor.lastUpdateDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.seniority">Seniority</span></dt>
+        <dd>
+          <div *ngIf="contributor.seniority">
+            <a [routerLink]="['/seniority', contributor.seniority.id, 'view']">{{ contributor.seniority.description }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gatewaySgcApp.coreSgcContributor.competences">Competences</span></dt>
+        <dd>
+          <span *ngFor="let competences of contributor.competences; let last = last">
+            <a [routerLink]="['/competency', competences.id, 'view']">{{ competences.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contributor', contributor.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "gatewaySgcApp": {
+    "coreSgcContributor": {
+      "home": {
+        "title": "Contributors",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contributor",
+        "createOrEditLabel": "Créer ou éditer un Contributor",
+        "notFound": "Aucun Contributor trouvé"
+      },
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Contributor {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contributor"
+      },
+      "id": "ID",
+      "name": "Name",
+      "lastName": "Last Name",
+      "cpf": "Cpf",
+      "email": "Email",
+      "photo": "Photo",
+      "birthDate": "Birth Date",
+      "admissionDate": "Admission Date",
+      "creationDate": "Creation Date",
+      "lastUpdateDate": "Last Update Date",
+      "seniority": "Seniority",
+      "competences": "Competences"
+    }
+  },
+  "coreSgcApp": {
+    "coreSgcContributor": {
+      "created": "Un nouveau Contributor a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contributor avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contributor avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}

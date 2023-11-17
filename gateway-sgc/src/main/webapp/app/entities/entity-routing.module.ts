@@ -24,6 +24,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'gatewaySgcApp.coreSgcSkill.home.title' },
         loadChildren: () => import('./core-sgc/skill/skill.routes'),
       },
+      {
+        path: 'contributor',
+        data: { pageTitle: 'gatewaySgcApp.coreSgcContributor.home.title' },
+        loadChildren: () => import('./core-sgc/contributor/contributor.routes'),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

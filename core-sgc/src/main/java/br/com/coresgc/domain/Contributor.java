@@ -44,8 +44,8 @@ public class Contributor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_contributor")
+    @SequenceGenerator(name = "sequence_contributor")
     @Column(name = "id")
     private Long id;
 
@@ -95,6 +95,7 @@ public class Contributor implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
+    @JoinColumn(name = "id_seniority", referencedColumnName = "id")
     private Seniority seniority;
 
     @ManyToMany(fetch = FetchType.LAZY)

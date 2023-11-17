@@ -11,6 +11,7 @@
         "coreSgcCategory": "Categoria",
         "coreSgcSeniority": "Senioridade",
         "coreSgcSkill": "Habilidade",
+        "coreSgcContributor": "Colaborador",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
