@@ -45,7 +45,7 @@ public class Contributor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_contributor")
-    @SequenceGenerator(name = "sequence_contributor")
+    @SequenceGenerator(name = "sequence_contributor", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
