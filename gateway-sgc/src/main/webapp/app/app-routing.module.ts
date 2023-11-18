@@ -46,6 +46,10 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           path: '',
           loadChildren: () => import(`./entities/entity-routing.module`).then(({ EntityRoutingModule }) => EntityRoutingModule),
         },
+        {
+          path: 'competency-prime',
+          loadChildren: () => import('./pages/competency/competency.module').then(m => m.CompetencyModule),
+        },
         ...errorRoute,
       ],
       { enableTracing: DEBUG_INFO_ENABLED, bindToComponentInputs: true }
