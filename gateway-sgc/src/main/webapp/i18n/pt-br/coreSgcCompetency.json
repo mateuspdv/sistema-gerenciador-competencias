@@ -19,7 +19,8 @@
       "description": "Descrição",
       "creationDate": "Data de Criação",
       "lastUpdateDate": "Data da Última Atualização",
-      "category": "Categoria"
+      "category": "Categoria",
+      "actions": "Ações"
     }
   },
   "coreSgcApp": {

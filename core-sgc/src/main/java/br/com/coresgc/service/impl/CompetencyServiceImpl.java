@@ -4,17 +4,17 @@ import br.com.coresgc.domain.Competency;
 import br.com.coresgc.repository.CompetencyRepository;
 import br.com.coresgc.service.CompetencyService;
 import br.com.coresgc.service.dto.CompetencyDTO;
+import br.com.coresgc.service.dto.ViewCompetencyDTO;
 import br.com.coresgc.service.mapper.CompetencyMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -68,9 +68,9 @@ public class CompetencyServiceImpl implements CompetencyService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<CompetencyDTO> findAll(Pageable pageable) {
+    public List<ViewCompetencyDTO> findAll() {
         log.debug("Request to get all Competencies");
-        return competencyRepository.findAll(pageable).map(competencyMapper::toDto);
+        return competencyRepository.searchAllViews();
     }
 
     @Override

@@ -5,6 +5,7 @@ import br.com.coresgc.service.CompetencyQueryService;
 import br.com.coresgc.service.CompetencyService;
 import br.com.coresgc.service.criteria.CompetencyCriteria;
 import br.com.coresgc.service.dto.CompetencyDTO;
+import br.com.coresgc.service.dto.ViewCompetencyDTO;
 import br.com.coresgc.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -205,6 +206,12 @@ public class CompetencyResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/competency")
+    public ResponseEntity<List<ViewCompetencyDTO>> searchAllViews() {
+        log.debug("REST request to get all competency views");
+        return ResponseEntity.ok(competencyService.findAll());
     }
 
 }

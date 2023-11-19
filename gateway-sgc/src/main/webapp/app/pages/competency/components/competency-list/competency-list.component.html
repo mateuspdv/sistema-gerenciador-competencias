@@ -1,3 +1,34 @@
-<p>competency-list works!</p>
+<div class="grid">
+  <div class="col-10">
+    <h2>Competencies</h2>
+  </div>
 
-<p-button label="Test"></p-button>
+  <div class="col-2">
+    <button pButton pRipple label="Create" class="p-button-success"></button>
+  </div>
+</div>
+
+<p-table [value]="competencies">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th>{{ "gatewaySgcApp.coreSgcCompetency.name" | translate }}</th>
+          <th>{{ "gatewaySgcApp.coreSgcCompetency.description" | translate }}</th>
+          <th>{{ "gatewaySgcApp.coreSgcCompetency.category" | translate }}</th>
+          <th class="text-align-center">{{ "gatewaySgcApp.coreSgcCompetency.actions" | translate }}</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-competency let-columns="columns">
+      <tr>
+          <td>{{ competency.name }}</td>
+          <td>{{ competency.description }}</td>
+          <td>{{ competency.categoryName }}</td>
+          <td>
+            <div class="action-buttons">
+              <button pButton pRipple label="View" class="gray-button"></button>
+              <button pButton pRipple label="Edit" class="gray-button"></button>
+              <button pButton pRipple label="Delete" class="gray-button"></button>
+            </div>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>

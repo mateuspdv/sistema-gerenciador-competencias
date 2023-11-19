@@ -1,0 +1,13 @@
+.text-align-center {
+  text-align: center !important;
+}
+
+.gray-button {
+  background: gray;
+  border: 1px solid gray;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
