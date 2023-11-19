@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -23,9 +23,9 @@ export class CompetencyFormComponent implements OnInit{
   buildForm(): void {
     this.form = this.formBuilder.group(({
       id: [null],
-      name: [null],
-      description: [null],
-      idCategory: [null]
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      idCategory: [null, [Validators.required]]
     }));
   }
 
@@ -46,6 +46,10 @@ export class CompetencyFormComponent implements OnInit{
       {label: 'Category 2', value: 2},
       {label: 'Category 3', value: 1},
     ];
+  }
+
+  isFormInvalid(): boolean {
+    return this.form.invalid;
   }
 
 }
