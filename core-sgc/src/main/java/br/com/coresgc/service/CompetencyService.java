@@ -20,4 +20,6 @@ public interface CompetencyService {
 
     void delete(Long id);
 
+    CompetencyDTO saveRefactored(CompetencyDTO competencyDTO);
+
 }

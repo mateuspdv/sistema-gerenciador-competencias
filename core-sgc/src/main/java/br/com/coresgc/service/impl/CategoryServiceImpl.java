@@ -4,6 +4,7 @@ import br.com.coresgc.domain.Category;
 import br.com.coresgc.repository.CategoryRepository;
 import br.com.coresgc.service.CategoryService;
 import br.com.coresgc.service.dto.CategoryDTO;
+import br.com.coresgc.service.dto.DropdownDTO;
 import br.com.coresgc.service.mapper.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -79,6 +80,12 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(Long id) {
         log.debug("Request to delete Category : {}", id);
         categoryRepository.deleteById(id);
+    }
+
+    /* ### Refactoring ### */
+
+    public List<DropdownDTO> findAllDropdown() {
+        return categoryRepository.findAllDropdown();
     }
 
 }

@@ -1,3 +1,4 @@
+import { Competency } from './../models/competency.model';
 import { ViewCompetency } from './../models/view-competency.model';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { Injectable } from '@angular/core';
@@ -16,6 +17,10 @@ export class CompetencyService {
 
   findAll(): Observable<ViewCompetency[]> {
     return this.httpClient.get<ViewCompetency[]>(this.resourceUrl);
+  }
+
+  save(competency: Competency): Observable<Competency> {
+    return this.httpClient.post<Competency>(this.resourceUrl, competency);
   }
 
 }

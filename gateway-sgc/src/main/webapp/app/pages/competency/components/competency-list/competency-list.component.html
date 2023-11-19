@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-2">
-    <button pButton pRipple label="Create" class="p-button-success" (click)="displayForm = true"></button>
+    <button pButton pRipple label="Create" class="p-button-success" (click)="createButton()"></button>
   </div>
 </div>
 
@@ -34,4 +34,6 @@
 </p-table>
 
 <competency-form [displayForm]="displayForm"
-                 (closedForm)="displayForm = false"></competency-form>
+                 [formAction]="formAction"
+                 (closedForm)="displayForm = false"
+                 (refreshList)="findAll()"></competency-form>

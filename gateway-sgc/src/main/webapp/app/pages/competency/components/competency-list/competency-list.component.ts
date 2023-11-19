@@ -1,3 +1,4 @@
+import { FormAction } from './../../../../shared/enums/form-action.enum';
 import { CompetencyService } from './../../services/competency.service';
 import { ViewCompetency } from './../../models/view-competency.model';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,7 @@ export class CompetencyListComponent implements OnInit {
 
   competencies: ViewCompetency[] = [];
   displayForm: boolean = false;
+  formAction!: FormAction;
 
   constructor(private competencyService: CompetencyService) { }
 
@@ -22,6 +24,11 @@ export class CompetencyListComponent implements OnInit {
     this.competencyService.findAll().subscribe({
       next: (res: ViewCompetency[]) => this.competencies = res
     });
+  }
+
+  createButton(): void {
+    this.formAction = FormAction.CREATE;
+    this.displayForm = true;
   }
 
 }

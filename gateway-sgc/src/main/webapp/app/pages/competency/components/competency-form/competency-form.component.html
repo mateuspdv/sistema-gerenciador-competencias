@@ -3,7 +3,8 @@
           [draggable]="false"
           [resizable]="false"
           [style]="{ width: '50vw' }"
-          (onHide)="hideForm()">
+          (onHide)="hideForm()"
+          (onShow)="showForm()">
   <ng-template pTemplate="header">
     <h4>Create Competency</h4>
   </ng-template>

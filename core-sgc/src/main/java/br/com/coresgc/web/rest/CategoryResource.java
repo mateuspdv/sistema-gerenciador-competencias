@@ -3,6 +3,7 @@ package br.com.coresgc.web.rest;
 import br.com.coresgc.repository.CategoryRepository;
 import br.com.coresgc.service.CategoryService;
 import br.com.coresgc.service.dto.CategoryDTO;
+import br.com.coresgc.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,16 @@ public class CategoryResource {
         log.debug("REST request to get Category : {}", id);
         Optional<CategoryDTO> categoryDTO = categoryService.findOne(id);
         return ResponseUtil.wrapOrNotFound(categoryDTO);
+    }
+
+    /**
+     * Refactoring
+     */
+
+    @GetMapping("/category")
+    public ResponseEntity<List<DropdownDTO>> findAllDropdown() {
+        log.debug("REST request to get all categories in dropdown format");
+        return ResponseEntity.ok(categoryService.findAllDropdown());
     }
 
 }
