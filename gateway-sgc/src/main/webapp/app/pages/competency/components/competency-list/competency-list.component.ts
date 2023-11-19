@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class CompetencyListComponent implements OnInit {
 
   competencies: ViewCompetency[] = [];
+  displayForm: boolean = false;
 
   constructor(private competencyService: CompetencyService) { }
 

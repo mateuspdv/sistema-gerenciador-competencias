@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-2">
-    <button pButton pRipple label="Create" class="p-button-success"></button>
+    <button pButton pRipple label="Create" class="p-button-success" (click)="displayForm = true"></button>
   </div>
 </div>
 
@@ -32,3 +32,6 @@
       </tr>
   </ng-template>
 </p-table>
+
+<competency-form [displayForm]="displayForm"
+                 (closedForm)="displayForm = false"></competency-form>

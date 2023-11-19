@@ -1,0 +1,41 @@
+<p-dialog [(visible)]="displayForm"
+          [modal]="true"
+          [draggable]="false"
+          [resizable]="false"
+          [style]="{ width: '50vw' }"
+          (onHide)="hideForm()">
+  <ng-template pTemplate="header">
+    <h4>Create Competency</h4>
+  </ng-template>
+
+  <form [formGroup]="form">
+    <div class="grid">
+      <div class="col-12">
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" class=" w-full">
+      </div>
+
+      <div class="col-12">
+        <label for="description">Description</label>
+        <input id="description" type="text" pInputText formControlName="description" class=" w-full">
+      </div>
+
+      <div class="col-12">
+        <label for="category">Category</label>
+        <p-dropdown id="category"
+                    [style]="{'width':'100%'}"
+                    [options]="optionsCategory"
+                    optionLabel="label"
+                    optionValue="value"
+                    formControlName="idCategory"
+                    appendTo="body"></p-dropdown>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Close" class="gray-button" (click)="hideForm()"></button>
+    <button pButton pRipple label="Create" class="gray-button" (click)="persistForm()"></button>
+  </ng-template>
+
+</p-dialog>
