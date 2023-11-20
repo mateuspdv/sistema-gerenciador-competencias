@@ -11,6 +11,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { CompetencyFormComponent } from './components/competency-form/competency-form.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -28,6 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     InputTextModule,
     DropdownModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
     TranslateModule
   ],
   schemas: [

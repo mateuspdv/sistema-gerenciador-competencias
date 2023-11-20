@@ -6,7 +6,7 @@
           (onHide)="hideForm()"
           (onShow)="showForm()">
   <ng-template pTemplate="header">
-    <h4>Create Competency</h4>
+    <h4>{{ getTitle() }}</h4>
   </ng-template>
 
   <form [formGroup]="form">
@@ -46,7 +46,9 @@
 
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Close" class="gray-button" (click)="hideForm()"></button>
-    <button pButton pRipple label="Create" class="gray-button" (click)="persistForm()" [disabled]="isFormInvalid()"></button>
+    <button pButton pRipple [label]="getNamePersistButton()" class="gray-button" (click)="persistForm()" [disabled]="isFormInvalid()"></button>
   </ng-template>
 
 </p-dialog>
+
+<p-toast></p-toast>

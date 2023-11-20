@@ -19,8 +19,16 @@ export class CompetencyService {
     return this.httpClient.get<ViewCompetency[]>(this.resourceUrl);
   }
 
+  findById(id: number): Observable<Competency> {
+    return this.httpClient.get<Competency>(`${this.resourceUrl}/${id}`);
+  }
+
   save(competency: Competency): Observable<Competency> {
     return this.httpClient.post<Competency>(this.resourceUrl, competency);
+  }
+
+  update(competency: Competency): Observable<Competency> {
+    return this.httpClient.put<Competency>(this.resourceUrl, competency);
   }
 
 }

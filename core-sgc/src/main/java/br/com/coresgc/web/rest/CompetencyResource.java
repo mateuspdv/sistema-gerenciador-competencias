@@ -219,10 +219,22 @@ public class CompetencyResource {
         return ResponseEntity.ok(competencyService.findAll());
     }
 
+    @GetMapping("/competency/{id}")
+    public ResponseEntity<CompetencyDTO> findByIdRefactored(@PathVariable Long id) {
+        log.debug("REST request to get Competency : {}", id);
+        return ResponseEntity.ok(competencyService.findByIdRefactored(id));
+    }
+
     @PostMapping("/competency")
     public ResponseEntity<CompetencyDTO> saveRefactored(@Valid @RequestBody CompetencyDTO competencyDTO) {
         log.debug("REST request to save Competency : {}", competencyDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(competencyService.saveRefactored(competencyDTO));
+    }
+
+    @PutMapping("competency")
+    public ResponseEntity<CompetencyDTO> updateRefactored(@Valid @RequestBody CompetencyDTO competencyDTO) {
+        log.debug("REST request to update Competency : {}", competencyDTO);
+        return ResponseEntity.ok(competencyService.updateRefactored(competencyDTO));
     }
 
 }

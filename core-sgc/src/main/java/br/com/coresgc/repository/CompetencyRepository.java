@@ -1,6 +1,7 @@
 package br.com.coresgc.repository;
 
 import br.com.coresgc.domain.Competency;
+import br.com.coresgc.service.dto.CompetencyDTO;
 import br.com.coresgc.service.dto.ViewCompetencyDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -29,5 +30,22 @@ public interface CompetencyRepository extends JpaRepository<Competency, Long>, J
         " FROM " +
         "   Competency C ")
     List<ViewCompetencyDTO> searchAllViews();
+
+    @Query("SELECT NEW br.com.coresgc.service.dto.CompetencyDTO(C.id, " +
+        " C.name, " +
+        " C.description, " +
+        " C.category.id) " +
+        " FROM " +
+        "   Competency C " +
+        " WHERE " +
+        "   C.id = :id ")
+    CompetencyDTO findByIdRefactored(@Param("id") Long id);
+
+    @Query("SELECT C.creationDate " +
+        " FROM " +
+        "   Competency C " +
+        " WHERE " +
+        "   C.id = :id ")
+    ZonedDateTime getCreationDateById(@Param("id") Long id);
 
 }

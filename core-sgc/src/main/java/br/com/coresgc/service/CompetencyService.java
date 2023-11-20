@@ -22,4 +22,8 @@ public interface CompetencyService {
 
     CompetencyDTO saveRefactored(CompetencyDTO competencyDTO);
 
+    CompetencyDTO updateRefactored(CompetencyDTO competencyDTO);
+
+    CompetencyDTO findByIdRefactored(Long id);
+
 }

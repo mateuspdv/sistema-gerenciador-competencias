@@ -99,10 +99,27 @@ public class CompetencyServiceImpl implements CompetencyService {
     }
 
     @Override
+    public CompetencyDTO findByIdRefactored(Long id) {
+        log.debug("Request to get Competency : {}", id);
+        existsById(id);
+        return competencyRepository.findByIdRefactored(id);
+    }
+
+    @Override
     public CompetencyDTO saveRefactored(CompetencyDTO competencyDTO) {
         log.debug("Request to save Competency : {}", competencyDTO);
         Competency competency = competencyMapper.toEntity(competencyDTO);
         competency.setCreationDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
+        competency.setLastUpdateDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
+        return competencyMapper.toDto(competencyRepository.save(competency));
+    }
+
+    @Override
+    public CompetencyDTO updateRefactored(CompetencyDTO competencyDTO) {
+        log.debug("Request to update Competency : {}", competencyDTO);
+        existsById(competencyDTO.getId());
+        Competency competency = competencyMapper.toEntity(competencyDTO);
+        competency.setCreationDate(competencyRepository.getCreationDateById(competency.getId()));
         competency.setLastUpdateDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
         return competencyMapper.toDto(competencyRepository.save(competency));
     }
