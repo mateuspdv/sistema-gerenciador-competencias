@@ -77,12 +77,6 @@ public class CompetencyServiceImpl implements CompetencyService {
         return competencyRepository.findById(id).map(competencyMapper::toDto);
     }
 
-    @Override
-    public void delete(Long id) {
-        log.debug("Request to delete Competency : {}", id);
-        competencyRepository.deleteById(id);
-    }
-
     /* ### Refactoring ### */
 
     private void existsById(Long id) {
@@ -122,6 +116,12 @@ public class CompetencyServiceImpl implements CompetencyService {
         competency.setCreationDate(competencyRepository.getCreationDateById(competency.getId()));
         competency.setLastUpdateDate(ZonedDateTime.now(ZoneId.of(ZoneId.SHORT_IDS.get("BET"))));
         return competencyMapper.toDto(competencyRepository.save(competency));
+    }
+
+    @Override
+    public void delete(Long id) {
+        log.debug("Request to delete Competency : {}", id);
+        competencyRepository.deleteById(id);
     }
 
 }

@@ -3,11 +3,13 @@ import { CompetencyService } from './../../services/competency.service';
 import { ViewCompetency } from './../../models/view-competency.model';
 import { Component, OnInit } from '@angular/core';
 import { Competency } from '../../models/competency.model';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'competency-list',
   templateUrl: './competency-list.component.html',
-  styleUrls: ['./competency-list.component.scss']
+  styleUrls: ['./competency-list.component.scss'],
+  providers: [ConfirmationService, MessageService]
 })
 export class CompetencyListComponent implements OnInit {
 
@@ -16,7 +18,9 @@ export class CompetencyListComponent implements OnInit {
   formAction!: FormAction;
   selectedCompetency!: Competency;
 
-  constructor(private competencyService: CompetencyService) { }
+  constructor(private competencyService: CompetencyService,
+              private confirmationService: ConfirmationService,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.findAll();
@@ -40,6 +44,24 @@ export class CompetencyListComponent implements OnInit {
         this.selectedCompetency = res;
         this.displayForm = true;
       }
+    });
+  }
+
+  delete(id: number): void {
+    this.competencyService.delete(id).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', detail: 'Competency successfully deleted!', life: 3000 });
+        this.findAll();
+      }
+    });
+  }
+
+  deleteButton(id: number): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => this.delete(id)
     });
   }
 

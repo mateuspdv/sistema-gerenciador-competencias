@@ -26,7 +26,7 @@
             <div class="action-buttons">
               <button pButton pRipple label="View" class="gray-button"></button>
               <button pButton pRipple label="Edit" class="gray-button" (click)="editButton(competency.id)"></button>
-              <button pButton pRipple label="Delete" class="gray-button"></button>
+              <button pButton pRipple label="Delete" class="gray-button" (click)="deleteButton(competency.id)"></button>
             </div>
           </td>
       </tr>
@@ -38,3 +38,7 @@
                  [selectedCompetency]="selectedCompetency"
                  (closedForm)="displayForm = false"
                  (refreshList)="findAll()"></competency-form>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+<p-toast></p-toast>

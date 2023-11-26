@@ -31,4 +31,8 @@ export class CompetencyService {
     return this.httpClient.put<Competency>(this.resourceUrl, competency);
   }
 
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.resourceUrl}/${id}`);
+  }
+
 }

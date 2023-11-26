@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MessagesModule,
     MessageModule,
     ToastModule,
+    ConfirmDialogModule,
     TranslateModule
   ],
   schemas: [

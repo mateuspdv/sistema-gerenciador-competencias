@@ -231,10 +231,17 @@ public class CompetencyResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(competencyService.saveRefactored(competencyDTO));
     }
 
-    @PutMapping("competency")
+    @PutMapping("/competency")
     public ResponseEntity<CompetencyDTO> updateRefactored(@Valid @RequestBody CompetencyDTO competencyDTO) {
         log.debug("REST request to update Competency : {}", competencyDTO);
         return ResponseEntity.ok(competencyService.updateRefactored(competencyDTO));
+    }
+
+    @DeleteMapping("/competency/{id}")
+    public ResponseEntity<Void> deleteRefactored(@PathVariable Long id) {
+        log.debug("REST request to delete Competency : {}", id);
+        competencyService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
