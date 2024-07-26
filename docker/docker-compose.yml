@@ -1,0 +1,5 @@
+services:
+  database:
+    extends:
+      file: postgresql.yml
+      service: postgres

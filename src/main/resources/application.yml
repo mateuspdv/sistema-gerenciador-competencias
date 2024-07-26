@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: Sistema Gerenciador Competencias
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sgc
+    username: sgc
+    password: sgc
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:/liquibase/master.xml
+    enabled: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  output:
+    ansi:
+      enabled: ALWAYS
