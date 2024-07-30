@@ -2,6 +2,7 @@ package br.com.sgc.controller;
 
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,12 +35,12 @@ public class CompetencyController {
     }
 
     @PostMapping
-    public ResponseEntity<CompetencyDto> create(@RequestBody CompetencyDto competencyDto) {
+    public ResponseEntity<CompetencyDto> create(@Valid @RequestBody CompetencyDto competencyDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(competencyService.create(competencyDto));
     }
 
     @PutMapping
-    public ResponseEntity<CompetencyDto> update(@RequestBody CompetencyDto competencyDto) {
+    public ResponseEntity<CompetencyDto> update(@Valid @RequestBody CompetencyDto competencyDto) {
         return ResponseEntity.ok(competencyService.update(competencyDto));
     }
 
