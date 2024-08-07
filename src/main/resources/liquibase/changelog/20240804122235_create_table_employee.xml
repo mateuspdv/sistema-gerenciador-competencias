@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240804122340-1" author="Mateus Padovan Pereira">
+        <createTable tableName="employee">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpf" type="varchar(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_birth" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_hire" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_seniority" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_seniority" references="seniority(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240804184552-2" author="Mateus Padovan Pereira">
+        <createSequence sequenceName="sequence_employee"
+                        dataType="bigint"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="20240804184840-3" author="Mateus Padovan Pereira">
+        <createTable tableName="employee_competency">
+            <column name="id_employee" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_competency_employee"
+                             references="employee(id)"/>
+            </column>
+            <column name="id_competency" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_competency_competency"
+                             references="competency(id)"/>
+            </column>
+            <column name="id_competency_level" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_competency_competency_level"
+                             references="competency_level(id)"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="employee_competency"
+                       columnNames="id_employee, id_competency"
+                       constraintName="pk_employee_competency"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,5 +1,6 @@
 package br.com.sgc.service.impl;
 
+import br.com.sgc.domain.CompetencyLevel;
 import br.com.sgc.repository.CompetencyLevelRepository;
 import br.com.sgc.service.CompetencyLevelService;
 import br.com.sgc.service.dto.CompetencyLevelDto;
@@ -26,6 +27,10 @@ public class CompetencyLevelServiceImpl implements CompetencyLevelService {
     public CompetencyLevelDto findById(Long id) {
         return competencyLevelMapper.toDto(competencyLevelRepository.findById(id)
                 .orElseThrow(RuntimeException::new));
+    }
+
+    public CompetencyLevel findEntityById(Long id) {
+        return competencyLevelRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
 }

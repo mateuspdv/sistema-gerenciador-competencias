@@ -1,5 +1,6 @@
 package br.com.sgc.service.impl;
 
+import br.com.sgc.domain.Competency;
 import br.com.sgc.repository.CompetencyRepository;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
@@ -24,6 +25,10 @@ public class CompetencyServiceImpl implements CompetencyService {
     public CompetencyDto findById(Long id) {
         return competencyMapper.toDto(competencyRepository.findById(id)
                 .orElseThrow(RuntimeException::new));
+    }
+
+    public Competency findEntityById(Long id) {
+        return competencyRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
     public CompetencyDto create(CompetencyDto competencyDto) {

@@ -1,5 +1,6 @@
 package br.com.sgc.service;
 
+import br.com.sgc.domain.CompetencyLevel;
 import br.com.sgc.service.dto.CompetencyLevelDto;
 import br.com.sgc.service.dto.DropdownDto;
 
@@ -10,5 +11,7 @@ public interface CompetencyLevelService {
     List<DropdownDto> findAll();
 
     CompetencyLevelDto findById(Long id);
+
+    CompetencyLevel findEntityById(Long id);
 
 }
