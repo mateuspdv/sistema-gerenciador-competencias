@@ -2,6 +2,7 @@ package br.com.sgc.controller;
 
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.filter.CompetencyFilter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,8 +26,8 @@ public class CompetencyController {
     private final CompetencyService competencyService;
 
     @GetMapping
-    public ResponseEntity<Page<CompetencyDto>> findAll(Pageable pageable) {
-        return ResponseEntity.ok(competencyService.findAll(pageable));
+    public ResponseEntity<Page<CompetencyDto>> filter(@RequestBody CompetencyFilter filter, Pageable pageable) {
+        return ResponseEntity.ok(competencyService.filter(filter, pageable));
     }
 
     @GetMapping("/{id}")

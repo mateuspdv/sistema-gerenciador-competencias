@@ -4,6 +4,7 @@ import br.com.sgc.domain.Competency;
 import br.com.sgc.repository.CompetencyRepository;
 import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.dto.CompetencyDto;
+import br.com.sgc.service.filter.CompetencyFilter;
 import br.com.sgc.service.mapper.CompetencyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +19,8 @@ public class CompetencyServiceImpl implements CompetencyService {
 
     private final CompetencyMapper competencyMapper;
 
-    public Page<CompetencyDto> findAll(Pageable pageable) {
-        return competencyRepository.findAll(pageable).map(competencyMapper::toDto);
+    public Page<CompetencyDto> filter(CompetencyFilter filter, Pageable pageable) {
+        return competencyRepository.filter(filter, pageable).map(competencyMapper::toDto);
     }
 
     public CompetencyDto findById(Long id) {
