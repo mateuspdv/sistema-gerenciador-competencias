@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240811203545-1" author="Mateus Padovan Pereira">
+        <createTable tableName="training_class">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_start" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_end" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_training_class_status" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_training_class_training_class_status"
+                             references="training_class_status(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240811204250-2" author="Mateus Padovan Pereira">
+        <createSequence sequenceName="sequence_training_class"
+                        dataType="bigint"
+                        startValue="1"
+                        incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="20240811204405-3" author="Mateus Padovan Pereira">
+        <createTable tableName="training_class_employee_competency">
+            <column name="id_training_class" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_training_class_employee_competency_training_class"
+                             references="training_class(id)"/>
+            </column>
+            <column name="id_employee" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_training_class_employee_competency_employee"
+                             references="employee(id)"/>
+            </column>
+            <column name="id_competency" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_training_class_employee_competency_competency"
+                             references="competency(id)"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="training_class_employee_competency"
+                       columnNames="id_training_class, id_employee, id_competency"
+                       constraintName="pk_training_class_employee_competency"/>
+    </changeSet>
+
+</databaseChangeLog>

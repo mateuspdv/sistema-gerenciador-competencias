@@ -39,6 +39,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(RuntimeException::new));
     }
 
+    public Employee findEntityById(Long id) {
+        return employeeRepository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
     private void setupEmployeeCompetencies(Employee employee, List<EmployeeCompetencyDto> competencies) {
         List<EmployeeCompetency> employeeCompetencies = new ArrayList<>();
 

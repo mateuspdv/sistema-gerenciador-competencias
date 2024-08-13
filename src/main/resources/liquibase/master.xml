@@ -11,5 +11,6 @@
     <include file="liquibase/changelog/20240804103125_create_table_competency_level.xml"/>
     <include file="liquibase/changelog/20240804122235_create_table_employee.xml"/>
     <include file="liquibase/changelog/20240811180330_create_table_training_class_status.xml"/>
+    <include file="liquibase/changelog/20240811203425_create_table_ training_class.xml"/>
     
 </databaseChangeLog>
