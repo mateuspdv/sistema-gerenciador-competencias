@@ -2,12 +2,13 @@ package br.com.sgc.service;
 
 import br.com.sgc.domain.Employee;
 import br.com.sgc.service.dto.EmployeeDto;
+import br.com.sgc.service.filter.EmployeeFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface EmployeeService {
 
-    Page<EmployeeDto> findAll(Pageable pageable);
+    Page<EmployeeDto> filter(EmployeeFilter filter, Pageable pageable);
 
     EmployeeDto findById(Long id);
 

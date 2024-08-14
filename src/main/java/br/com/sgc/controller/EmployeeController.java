@@ -2,6 +2,7 @@ package br.com.sgc.controller;
 
 import br.com.sgc.service.EmployeeService;
 import br.com.sgc.service.dto.EmployeeDto;
+import br.com.sgc.service.filter.EmployeeFilter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,8 +26,8 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping
-    public ResponseEntity<Page<EmployeeDto>> findAll(Pageable pageable) {
-        return ResponseEntity.ok(employeeService.findAll(pageable));
+    public ResponseEntity<Page<EmployeeDto>> filter(@RequestBody EmployeeFilter filter, Pageable pageable) {
+        return ResponseEntity.ok(employeeService.filter(filter, pageable));
     }
 
     @GetMapping("/{id}")

@@ -9,6 +9,7 @@ import br.com.sgc.service.CompetencyService;
 import br.com.sgc.service.EmployeeService;
 import br.com.sgc.service.dto.EmployeeCompetencyDto;
 import br.com.sgc.service.dto.EmployeeDto;
+import br.com.sgc.service.filter.EmployeeFilter;
 import br.com.sgc.service.mapper.EmployeeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,8 +31,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final CompetencyLevelService competencyLevelService;
 
-    public Page<EmployeeDto> findAll(Pageable pageable) {
-        return employeeRepository.findAll(pageable).map(employeeMapper::toDto);
+    public Page<EmployeeDto> filter(EmployeeFilter filter, Pageable pageable) {
+        return employeeRepository.filter(filter, pageable).map(employeeMapper::toDto);
     }
 
     public EmployeeDto findById(Long id) {
